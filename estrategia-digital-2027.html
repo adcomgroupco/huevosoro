@@ -315,15 +315,10 @@ html,body{background:#1b0e08;font-family:var(--body);color:var(--ink);-webkit-fo
 /* cierre */
 .s-end{background:var(--oro);color:#fff}
 .s-end .im.bgp{position:absolute;inset:0;opacity:.2;mix-blend-mode:multiply}
-.end-l{position:absolute;left:110px;top:120px;width:900px}
-.end-l .script{font-size:124px;color:var(--yema);display:block;line-height:1.05;white-space:nowrap}
-.end-l .disp{color:#fff;font-size:170px;margin-top:10px}
-.steps{position:absolute;left:1050px;right:110px;top:150px;display:grid;gap:20px}
-.stp{background:rgba(58,29,18,.92);border-radius:28px;padding:28px 34px;display:grid;grid-template-columns:100px 1fr;gap:24px;align-items:center}
-.stp .nn{font-family:var(--display);font-weight:800;font-size:96px;color:var(--yema);line-height:.9}
-.stp b{font-size:32px;display:block;margin-bottom:4px}
-.stp span{font-size:23px;color:#f0dcc4;line-height:1.35}
-.end-logo{position:absolute;left:110px;bottom:74px;width:300px;height:340px;background:var(--casca);border-radius:44px;padding:26px;box-shadow:0 30px 60px -30px rgba(80,30,0,.55)}
+.end-c{position:absolute;left:0;right:0;top:170px;text-align:center}
+.end-c .script{font-size:330px;color:var(--casca);display:block;line-height:1}
+.end-p{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:88px;line-height:1.02;color:var(--nido);max-width:1500px;margin:26px auto 0}
+.end-logo{position:absolute;left:50%;margin-left:-100px;bottom:56px;width:200px;height:226px;background:var(--casca);border-radius:34px;padding:16px;box-shadow:0 24px 40px -24px rgba(80,30,0,.5)}
 .end-logo .im{width:100%;height:100%}
 .end-by{position:absolute;right:110px;bottom:84px;display:flex;align-items:center;gap:16px;font-size:26px;font-weight:600}
 .end-by .im{width:56px;height:56px;border-radius:14px}
@@ -336,9 +331,6 @@ html,body{background:#1b0e08;font-family:var(--body);color:var(--ink);-webkit-fo
 .hud button{pointer-events:auto;width:32px;height:32px;border-radius:50%;border:0;background:rgba(255,255,255,.16);color:#fff;cursor:pointer;font-size:16px}
 .hud button:hover{background:var(--oro)}
 .hint{position:fixed;left:50%;top:22px;transform:translateX(-50%);z-index:60;background:rgba(30,14,8,.8);color:#fff;font-size:15px;padding:9px 20px;border-radius:999px;transition:opacity .8s;pointer-events:none}
-.fl{position:fixed;top:16px;right:20px;z-index:60;display:flex;gap:10px}
-.fl a{background:rgba(255,248,236,.92);color:var(--nido);font-size:14px;font-weight:600;padding:9px 18px;border-radius:999px;text-decoration:none;box-shadow:0 6px 18px -8px rgba(0,0,0,.45);backdrop-filter:blur(8px);transition:background .25s,color .25s}
-.fl a:hover{background:var(--oro);color:#fff}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 
 @media print{
@@ -349,7 +341,7 @@ html,body{overflow:visible;height:auto;background:#fff}
 .slide [data-in]{animation:none!important;opacity:1!important}
 .bars .bar i,.mcard .shr i,.mixb i{width:var(--w)!important;transition:none}
 .dots i{opacity:1!important;transform:none!important}
-.hud,.hint,.fl{display:none}
+.hud,.hint{display:none}
 }
 @media (prefers-reduced-motion:reduce){.scr .bg,.kb,.mb .pc .im,.yt .v .im,.strip .tr,.s-cover .im.kb{animation:none!important}}
 </style>
@@ -682,24 +674,21 @@ html,body{overflow:visible;height:auto;background:#fff}
 <section class="slide paja" data-title="Marzo y abril"><header class="hd"><p class="kick" data-in="left">Fase de tracción</p><h2 class="disp l" data-in="wipe" style="--d:150">Marzo y abril</h2></header><div class="mpair" data-m="2,3"></div></section>
 <section class="slide" data-title="Mayo y junio"><header class="hd"><p class="kick" data-in="left">Fase de temporada</p><h2 class="disp l" data-in="wipe" style="--d:150">Mayo y junio</h2></header><div class="mpair" data-m="4,5"></div></section>
 
-<!-- 16 · Cierre -->
-<section class="slide s-end" data-title="Cómo empezamos">
+<!-- 16 · Gracias -->
+<section class="slide s-end" data-title="Gracias">
   <div class="im bgp" style="background-image:var(--i-hero)"></div>
-  <div class="end-l"><span class="script" data-in="pop" style="--d:200">Empezamos en</span><h2 class="disp" data-in="wipe" style="--d:500">enero</h2></div>
-  <div class="steps">
-    <div class="stp" data-in="right" style="--d:700"><span class="nn">1</span><div><b>Validamos los cuatro ejes y el podcast</b><span>Ajustamos nombres, tono y qué piezas se producen primero.</span></div></div>
-    <div class="stp" data-in="right" style="--d:900"><span class="nn">2</span><div><b>Diciembre: producción de las primeras piezas</b><span>Manifiesto de calidad, primeras recetas y episodios 1 y 2.</span></div></div>
-    <div class="stp" data-in="right" style="--d:1100"><span class="nn">3</span><div><b>Enero: arranca la pauta con el nuevo reparto de formatos</b><span>Vertical, horizontal y estático, con revisión de resultados cada mes.</span></div></div>
+  <div class="end-c">
+    <span class="script" data-in="pop" style="--d:200">Gracias</span>
+    <p class="end-p" data-in="up" style="--d:800">Que cada huevo Oro llegue a la mesa contando de dónde viene.</p>
   </div>
   <div class="end-logo" data-in="pop" style="--d:1300"><div class="im contain" style="background-image:var(--i-logo)"></div></div>
-  <div class="end-by" data-in="fade" style="--d:1500"><div class="im contain" style="background-image:var(--i-favicon)"></div><span>ADCOM · Gracias</span></div>
+  <div class="end-by" data-in="fade" style="--d:1600"><div class="im contain" style="background-image:var(--i-favicon)"></div><span>ADCOM</span></div>
 </section>
 
 </div></div>
 
 <div class="hud"><div class="pbar"><i id="pb"></i></div>
   <div class="info"><span id="ct">1 / 16</span><button id="pv" aria-label="Anterior">‹</button><button id="nx" aria-label="Siguiente">›</button><button id="fs" aria-label="Pantalla completa">⛶</button></div></div>
-<div class="fl"><a href="index.html">Portal</a><a href="informe-resultados.html">Informe de resultados</a></div>
 <div class="hint" id="hint">Desplázate hacia abajo para recorrer la estrategia</div>
 
 <script>
