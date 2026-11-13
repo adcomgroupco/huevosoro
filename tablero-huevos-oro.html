@@ -495,6 +495,11 @@ function expandAll(abre){
 function mediaAnuncio(canal,pv){
   const img = pv.imagen ? `<img loading="lazy" src="${esc(pv.imagen)}" alt="">` : '<span class="nop">Sin vista previa para este anuncio.</span>';
   if(canal==='Meta' && pv.iframe) return `<iframe src="${esc(pv.iframe)}" loading="lazy" scrolling="no" title="Preview del anuncio"></iframe>`;
+  if(canal==='TikTok' && !pv.video_mp4){
+    // Spark Ads: el anuncio es una publicación de @huevosoro, sin archivo en la biblioteca; se incrusta el reproductor público
+    const m = String(pv.publicacion_o_destino||'').match(/video\/(\d+)/);
+    if(m) return `<iframe src="https://www.tiktok.com/player/v1/${m[1]}?description=1&music_info=1" loading="lazy" allow="fullscreen" title="Video de TikTok"></iframe>`;
+  }
   if(canal==='TikTok' && pv.video_mp4) return `<video src="${esc(pv.video_mp4)}" ${pv.imagen?`poster="${esc(pv.imagen)}"`:''} controls muted loop playsinline preload="none" onerror="this.outerHTML=this.poster?'<img src=&quot;'+this.poster+'&quot;>':'<span class=nop>Sin vista previa</span>'"></video>`;
   if(canal==='Google' && pv.youtube) return `<iframe src="https://www.youtube.com/embed/${esc(pv.youtube)}?rel=0&modestbranding=1" loading="lazy" allowfullscreen title="Video del anuncio"></iframe>`;
   return img;
