@@ -147,7 +147,12 @@ tr.nv-det td{background:var(--gray-50);padding:10px 14px}
 .ad-sub{margin-top:14px}.ad-sub:first-of-type{margin-top:0}
 .ad-sub-head{font-size:13px;font-weight:600;margin-bottom:10px;padding-top:12px;border-top:1px solid var(--gray-100)}
 .ad-sub:first-of-type .ad-sub-head{border-top:0;padding-top:0}
-.ad-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:14px;align-items:start}
+.ad-strip{display:flex;gap:14px;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x proximity;scroll-behavior:smooth;align-items:flex-start}
+.ad-strip .ad-card{flex:0 0 336px;scroll-snap-align:start}
+.ad-strip::-webkit-scrollbar{height:8px}.ad-strip::-webkit-scrollbar-thumb{background:var(--gray-200);border-radius:999px}
+.car-nav{margin-left:auto;display:flex;gap:6px;align-items:center}
+.car-btn{width:30px;height:30px;border-radius:50%;border:1px solid var(--gray-200);background:var(--white);cursor:pointer;font-size:15px;line-height:1;color:var(--black)}
+.car-btn:hover{background:var(--black);color:var(--white);border-color:var(--black)}
 .ad-card{min-width:0;border:1px solid var(--gray-200);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;background:var(--white)}
 .ad-prev{height:610px;background:var(--gray-50);overflow:hidden;display:flex;justify-content:center}
 .ad-prev iframe{border:0;width:320px;height:100%}
@@ -167,7 +172,7 @@ tr.nv-det td{background:var(--gray-50);padding:10px 14px}
 .tag{display:inline-block;font-size:10.5px;font-weight:700;padding:1px 8px;border-radius:999px}
 .tag-act{background:#DCFCE7;color:#166534}.tag-pau{background:var(--gray-100);color:var(--gray-600)}
 .tag-org{background:#FFF3B0;color:#7A5B00}
-@media(max-width:700px){.ad-prev{height:540px}.ad-prev iframe{width:100%}}
+@media(max-width:700px){.ad-prev{height:540px}.ad-prev iframe{width:100%}.ad-strip .ad-card{flex-basis:86vw}}
 .more{display:block;margin:2px auto 20px}
 .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}
 .tscroll tbody td.nm{white-space:normal;min-width:240px;max-width:430px}
@@ -259,7 +264,6 @@ tr.nv-det td{background:var(--gray-50);padding:10px 14px}
     <div class="sec-title" id="sec-prev"><span></span>Anuncios con preview<span class="sec-note">ordenados por inversión en el rango</span>
       <span style="margin-left:auto;display:flex;gap:6px" id="prev-ctl"></span></div>
     <div id="ad-grid"></div>
-    <button class="tbtn more" id="more-ads">Ver más anuncios</button>
 
     <div class="sec-title" id="sec-org"><span></span>Resumen orgánico<span class="sec-note" id="rango-note2"></span></div>
     <div class="kpi-grid" id="kpi-org"></div>
@@ -274,8 +278,7 @@ tr.nv-det td{background:var(--gray-50);padding:10px 14px}
     <div class="card tcard"><div class="tscroll"><table><thead id="tipo-head"></thead><tbody id="tipo-body"></tbody></table></div></div>
 
     <div class="sec-title" id="sec-top"><span></span>Publicaciones con más interacciones<span class="sec-note">en el rango elegido</span></div>
-    <div class="ad-grid" id="org-grid"></div>
-    <button class="tbtn more" id="more-org">Ver más publicaciones</button>
+    <div class="card ad-ev"><div class="ad-ev-head"><div class="ev-name">Publicaciones</div><span class="kpi-sub" id="org-count"></span><span class="car-nav"><button class="car-btn" data-car="strip-org" data-dir="-1" aria-label="Anterior">‹</button><button class="car-btn" data-car="strip-org" data-dir="1" aria-label="Siguiente">›</button></span></div><div class="ad-strip" id="strip-org"></div></div>
 
     <div class="sec-title" id="sec-posts"><span></span>Listado de publicaciones</div>
     <div class="card tcard"><div class="tscroll"><table><thead id="posts-head"></thead><tbody id="posts-body"></tbody></table></div>
@@ -309,7 +312,7 @@ const fLarga = s => { const [y,m,d] = s.split('-'); return `${+d} ${MESES[+m-1]}
 const mesLbl = k => { const [y,m] = k.split('-'); return `${MESES[+m-1]} ${y}`; };
 
 /* estado */
-const S = { from:'', to:'', canal:'Todos', red:'Todas', met:'inv', gran:'dia', maxD:'', adsN:6, orgN:6, postsN:20, activos:true, q:'' };
+const S = { from:'', to:'', canal:'Todos', red:'Todas', met:'inv', gran:'dia', maxD:'', postsN:20, activos:true, q:'' };
 let P = [], PREV = {}, POSTS = [], SEG = [], charts = {};
 
 const cargar = nombre => new Promise((ok,ko) => Papa.parse(GV(nombre),{download:true,header:true,skipEmptyLines:true,
@@ -350,19 +353,18 @@ function iniciar(){
   $('quick').onclick = e => { const b = e.target.closest('[data-i]'); if(b){ S.from = pr[+b.dataset.i][1]; S.to = pr[+b.dataset.i][2]; sync(); } };
   $('f-desde').onchange = () => { S.from = $('f-desde').value || S.from; sync(); };
   $('f-hasta').onchange = () => { S.to = $('f-hasta').value || S.to; sync(); };
-  $('f-canal').onchange = () => { S.canal = $('f-canal').value; S.adsN = 6; sync(); };
-  $('f-red').onchange = () => { S.red = $('f-red').value; S.orgN = 6; sync(); };
-  $('btn-reset').onclick = () => { S.from = pr[2][1]; S.to = pr[2][2]; S.canal = 'Todos'; S.red = 'Todas'; S.met = 'inv'; S.gran = 'dia'; S.activos = true; S.adsN = 6; S.orgN = 6; S.q = ''; $('q').value = ''; sync(); };
+  $('f-canal').onchange = () => { S.canal = $('f-canal').value; sync(); };
+  $('f-red').onchange = () => { S.red = $('f-red').value; sync(); };
+  $('btn-reset').onclick = () => { S.from = pr[2][1]; S.to = pr[2][2]; S.canal = 'Todos'; S.red = 'Todas'; S.met = 'inv'; S.gran = 'dia'; S.activos = true; S.q = ''; $('q').value = ''; sync(); };
   $('evo-ctl').innerHTML = [['inv','Inversión'],['imp','Impresiones'],['clic','Clics'],['rep','Reproducciones'],['int','Interacciones']].map(m=>`<button class="qbtn" data-met="${m[0]}">${m[1]}</button>`).join('')
     + '<span class="f-sep"></span>' + [['dia','Día'],['sem','Semana'],['mes','Mes']].map(m=>`<button class="qbtn" data-gran="${m[0]}">${m[1]}</button>`).join('');
   $('evo-ctl').onclick = e => { const b = e.target.closest('button'); if(!b) return; if(b.dataset.met) S.met = b.dataset.met; if(b.dataset.gran) S.gran = b.dataset.gran; sync(); };
   $('prev-ctl').innerHTML = '<button class="qbtn" data-a="1">En pauta ahora</button><button class="qbtn" data-a="0">Todos los del rango</button>';
-  $('prev-ctl').onclick = e => { const b = e.target.closest('[data-a]'); if(b){ S.activos = b.dataset.a==='1'; S.adsN = 6; sync(); } };
+  $('prev-ctl').onclick = e => { const b = e.target.closest('[data-a]'); if(b){ S.activos = b.dataset.a==='1'; sync(); } };
   $('arbol-body').onclick = e => { const tr = e.target.closest('tr[data-k]'); if(tr) toggle(tr.dataset.k); };
   $('exp-all').onclick = () => expandAll(true); $('col-all').onclick = () => expandAll(false);
   $('q').oninput = () => { S.q = $('q').value.toLowerCase(); pintarArbol(); };
-  $('more-ads').onclick = () => { S.adsN += 6; pintarPrev(); };
-  $('more-org').onclick = () => { S.orgN += 6; pintarOrg(); };
+  document.addEventListener('click', e => { const b = e.target.closest('[data-car]'); if(!b) return; const st = $(b.dataset.car); st.scrollBy({left:+b.dataset.dir*(st.clientWidth*0.85),behavior:'smooth'}); });
   $('more-posts').onclick = () => { S.postsN += 30; pintarListado(); };
   [S.from,S.to] = [pr[2][1],pr[2][2]];
   const secs = [...document.querySelectorAll('.sec-title[id]')], links = [...document.querySelectorAll('.app-sidebar-nav a')];
@@ -511,6 +513,7 @@ function tarjetaAd(x,subInv,activo){
     : [['Inversión',cop(s.inv)],[s.rep?'Reproducciones':'Clics',fmt(s.rep||s.clic)],['Interacciones',cnt(s.int)]];
   return `<div class="ad-card"><div class="ad-prev${gg?' gg':''}">${mediaAnuncio(r0.canal,pv)}</div>
     <div class="ad-body"><div class="ad-name"><span>${esc(r0.ad)}</span>${lnk?`<a href="${esc(lnk)}" target="_blank" rel="noopener">Abrir ↗</a>`:''}</div>
+    <div class="t-mute" style="font-size:11px;margin-top:-4px">${esc(r0.camp)}</div>
     <div><span class="tag ${activo?'tag-act':'tag-pau'}">${activo?'Activo':'Ya no corre'}</span> <span class="t-mute" style="font-size:11px">${subInv?pct(s.inv/subInv)+' de la inversión de la campaña':'sin inversión en el rango'}</span></div>
     <div class="ad-share"><div style="width:${subInv?s.inv/subInv*100:0}%"></div></div>
     <div class="ad-nums">${nums.map(n=>`<div><div class="nm-label">${n[0]}</div><div class="nm-value">${n[1]}</div></div>`).join('')}</div></div></div>`;
@@ -519,17 +522,18 @@ function pintarPrev(){
   const rows = enRango(porCanal(P),S.from,S.to), recientes = new Set(P.filter(r=>r.d>=addD(S.maxD,-2)&&r.inv>0).map(r=>r.canal+'|'+r.id));
   let lista = [...grp(rows,r=>r.canal+'|'+r.id).entries()].map(([k,rr])=>({k,rr,s:suma(rr)})).filter(x=>x.s.inv>0);
   if(S.activos) lista = lista.filter(x => recientes.has(x.k));
-  lista.sort((x,y)=>y.s.inv-x.s.inv);
-  const total = lista.length, vis = lista.slice(0,S.adsN);
-  // un bloque por canal y, dentro, un subgrupo por campaña (como Altavista por evento)
-  const porCan = grp(vis,x=>x.rr[0].canal), orden = CANALES.filter(c=>porCan.has(c));
-    $('ad-grid').innerHTML = orden.length ? orden.map(c => {
-    const xs = porCan.get(c), todosCanal = lista.filter(x=>x.rr[0].canal===c), camps = grp(xs,x=>x.rr[0].camp);
-    return `<div class="card ad-ev"><div class="ad-ev-head"><div class="ev-name"><span class="dot" style="background:${COL[c]}"></span>${c}</div><span class="kpi-sub">${todosCanal.length} ${todosCanal.length===1?'anuncio':'anuncios'} · ${cop(todosCanal.reduce((t,x)=>t+x.s.inv,0))} en el rango</span></div>
-      ${[...camps.entries()].map(([camp,ys]) => { const subInv = lista.filter(x=>x.rr[0].canal===c && x.rr[0].camp===camp).reduce((t,x)=>t+x.s.inv,0);
-        return `<div class="ad-sub"><div class="ad-sub-head">${esc(camp)} <span class="kpi-sub">${cop(subInv)}</span></div><div class="ad-grid">${ys.map(y=>tarjetaAd(y,subInv,recientes.has(y.k))).join('')}</div></div>`; }).join('')}</div>`;
+  // un carrusel por canal con todos sus anuncios, agrupados por campaña (la de más inversión primero)
+  const orden = CANALES.filter(c=>lista.some(x=>x.rr[0].canal===c));
+  $('ad-grid').innerHTML = orden.length ? orden.map(c => {
+    const xs = lista.filter(x=>x.rr[0].canal===c), invCamp = {};
+    xs.forEach(x => invCamp[x.rr[0].camp] = (invCamp[x.rr[0].camp]||0) + x.s.inv);
+    xs.sort((x,y) => invCamp[y.rr[0].camp]-invCamp[x.rr[0].camp] || y.s.inv-x.s.inv);
+    const act = xs.filter(x=>recientes.has(x.k)).length;
+    return `<div class="card ad-ev"><div class="ad-ev-head"><div class="ev-name"><span class="dot" style="background:${COL[c]}"></span>${c}</div>
+      <span class="kpi-sub">${xs.length} ${xs.length===1?'anuncio':'anuncios'}${S.activos?'':` · ${act} en pauta ahora`} · ${cop(xs.reduce((t,x)=>t+x.s.inv,0))} en el rango</span>
+      <span class="car-nav"><button class="car-btn" data-car="strip-${c}" data-dir="-1" aria-label="Anterior">‹</button><button class="car-btn" data-car="strip-${c}" data-dir="1" aria-label="Siguiente">›</button></span></div>
+      <div class="ad-strip" id="strip-${c}">${xs.map(x=>tarjetaAd(x,invCamp[x.rr[0].camp],recientes.has(x.k))).join('')}</div></div>`;
   }).join('') : '<div class="card kpi-card t-mute">No hay anuncios con inversión en este rango.</div>';
-  $('more-ads').style.display = total > S.adsN ? 'block' : 'none';
 }
 
 /* orgánico */
@@ -577,14 +581,14 @@ function embedOrg(p){
   return poster;
 }
 function pintarOrgCards(cur){
-  const top = [...cur].sort((x,y)=>y.int-x.int), vis = top.slice(0,S.orgN);
-  $('org-grid').innerHTML = vis.length ? vis.map(p => `<div class="ad-card"><div class="ad-prev">${embedOrg(p)}</div><div class="ad-body">
+  const top = [...cur].sort((x,y)=>y.int-x.int);
+  $('org-count').textContent = `${top.length} ${top.length===1?'publicación':'publicaciones'} · de más a menos interacciones`;
+  $('strip-org').innerHTML = top.length ? top.map(p => `<div class="ad-card"><div class="ad-prev">${embedOrg(p)}</div><div class="ad-body">
     <div class="ad-name"><span><span class="tag tag-org">${TIPOS[p.red]||p.red}</span> ${fCorta(p.d)}</span>${p.url?`<a href="${esc(p.url)}" target="_blank" rel="noopener">Abrir ↗</a>`:''}</div>
     <div class="ad-txt">${esc((p.txt||'').slice(0,140))}${(p.txt||'').length>140?'…':''}</div>
     <div class="ad-nums"><div><div class="nm-label">Interacciones</div><div class="nm-value">${fmt(p.int)}</div></div>
     <div><div class="nm-label">Reproducciones</div><div class="nm-value">${cnt(p.rep)}</div></div>
-    <div><div class="nm-label">Impresiones</div><div class="nm-value">${cnt(p.impr)}</div></div></div></div></div>`).join('') : '<div class="card kpi-card t-mute">Sin publicaciones en este rango.</div>';
-  $('more-org').style.display = top.length > S.orgN ? 'block' : 'none';
+    <div><div class="nm-label">Impresiones</div><div class="nm-value">${cnt(p.impr)}</div></div></div></div></div>`).join('') : '<div class="kpi-sub" style="padding:16px">Sin publicaciones en este rango.</div>';
 }
 function pintarOrgOnly(){ pintarOrg(); }
 function pintarListado(){
