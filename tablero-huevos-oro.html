@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Huevos Oro | Tablero</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{
+  --black:#0A0A0A; --white:#fff; --yellow:#FFC000;
+  --g50:#F8F8F8; --g100:#F0F0F0; --g200:#E4E4E4; --g400:#9A9A9A; --g600:#5E5E5E;
+  --meta:#4C78D8; --tiktok:#1F1F1F; --google:#F2B300; --fb:#4C78D8; --tt:#1F1F1F;
+  --good:#1E8E5A; --bad:#C8402F;
+  --r:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Poppins,system-ui,sans-serif;background:var(--g50);color:var(--black);font-size:14px;line-height:1.45}
+header.top{background:var(--black);color:#fff;padding:14px 24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+header.top h1{font-size:17px;margin:0;font-weight:600;letter-spacing:.2px}
+header.top h1 i{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--yellow);margin-right:10px}
+header.top .upd{margin-left:auto;font-size:12px;color:#BDBDBD}
+nav.tabs{display:flex;gap:6px;background:var(--black);padding:0 24px 0}
+nav.tabs button{background:none;border:0;color:#BDBDBD;font:500 14px Poppins;padding:10px 18px;cursor:pointer;border-bottom:3px solid transparent}
+nav.tabs button.on{color:#fff;border-bottom-color:var(--yellow)}
+.filters{position:sticky;top:0;z-index:5;background:rgba(248,248,248,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--g200);padding:10px 24px;display:flex;gap:10px 18px;flex-wrap:wrap;align-items:center}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1px solid var(--g200);background:#fff;border-radius:999px;padding:5px 13px;font:500 12px Poppins;cursor:pointer;color:var(--g600)}
+.chip.on{background:var(--black);color:#fff;border-color:var(--black)}
+.filters input[type=date]{border:1px solid var(--g200);border-radius:8px;padding:4px 8px;font:12px Poppins;background:#fff}
+.filters label{font-size:12px;color:var(--g600)}
+.sep{width:1px;height:22px;background:var(--g200)}
+main{max-width:1280px;margin:0 auto;padding:22px 24px 60px}
+section.pane{display:none}
+section.pane.on{display:block}
+h2{font-size:15px;margin:30px 0 4px;font-weight:600}
+h2 small{font-weight:400;color:var(--g400);font-size:12px;margin-left:8px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:6px}
+.kpi{background:#fff;border-radius:var(--r);padding:14px 16px;border-bottom:3px solid var(--yellow);box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.kpi .l{font-size:11px;color:var(--g600);text-transform:uppercase;letter-spacing:.4px}
+.kpi .v{font-size:22px;font-weight:600;margin-top:2px}
+.kpi .d{font-size:11px;margin-top:2px;color:var(--g400)}
+.d.up-good,.d.dn-good{color:var(--good)} .d.up-bad,.d.dn-bad{color:var(--bad)}
+.card{background:#fff;border-radius:var(--r);padding:16px 18px;box-shadow:0 1px 2px rgba(0,0,0,.04);margin-top:10px}
+.card .bar{display:flex;gap:10px 16px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+.chart{position:relative;height:300px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:700px){.filters{position:static}.sep{display:none}}
+@media(max-width:900px){.grid2{grid-template-columns:1fr}.filters,main,header.top,nav.tabs{padding-left:14px;padding-right:14px}}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:12.5px}
+th{background:var(--g100);color:var(--g600);font-weight:500;text-align:right;padding:7px 10px;white-space:nowrap;position:sticky;top:0}
+th:first-child,td:first-child{text-align:left}
+td{padding:6px 10px;text-align:right;border-bottom:1px solid var(--g100);white-space:nowrap}
+tr.tot td{background:var(--g100);font-weight:600}
+td.nm{white-space:normal;min-width:240px;max-width:420px}
+tr.l1 td{font-weight:600}
+tr.l2 td:first-child{padding-left:28px} tr.l3 td:first-child{padding-left:50px}
+tr.l3 td{color:var(--g600)}
+tr.hid{display:none}
+.tg{cursor:pointer;display:inline-block;width:16px;color:var(--g400);user-select:none}
+.thumb{width:34px;height:34px;border-radius:6px;object-fit:cover;vertical-align:middle;margin-right:8px;background:var(--g100)}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin-top:10px}
+.pz{background:#fff;border-radius:var(--r);overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.05);display:flex;flex-direction:column}
+.pz .im{aspect-ratio:1/1;background:var(--g100);display:flex;align-items:center;justify-content:center;color:var(--g400);font-size:12px;text-align:center;padding:10px}
+.pz .im img{width:100%;height:100%;object-fit:cover;display:block}
+.pz .tx{padding:10px 12px;display:flex;flex-direction:column;gap:4px;flex:1}
+.pz .nm2{font-weight:600;font-size:12.5px;overflow-wrap:anywhere}
+.pz .mt{font-size:11.5px;color:var(--g600)}
+.pz .mt b{color:var(--black)}
+.pz a{font-size:12px;color:var(--black);font-weight:600;text-decoration:none;border-bottom:2px solid var(--yellow);align-self:flex-start;margin-top:4px}
+.badge{display:inline-block;font-size:10.5px;padding:2px 8px;border-radius:999px;background:var(--g100);color:var(--g600);margin-right:4px}
+.seg{display:flex;gap:4px}
+.seg .chip{padding:3px 11px}
+.empty{padding:26px;text-align:center;color:var(--g400)}
+.err{background:#FFF3F0;border:1px solid #F3C9C0;color:#7A2A1F;padding:12px 16px;border-radius:10px;margin:14px 0}
+.more{display:block;margin:10px auto 0;border:1px solid var(--g200);background:#fff;padding:6px 18px;border-radius:999px;font:500 12px Poppins;cursor:pointer}
+</style>
+</head>
+<body>
+<header class="top"><h1><i></i>Huevos Oro · Tablero</h1><span class="upd" id="upd"></span></header>
+<nav class="tabs"><button data-p="pauta" class="on">Pauta</button><button data-p="org">Orgánico</button></nav>
+
+<div class="filters" id="filters">
+  <div class="chips" id="presets"></div>
+  <span class="sep"></span>
+  <label>Del <input type="date" id="f1"></label><label>al <input type="date" id="f2"></label>
+  <span class="sep"></span>
+  <div class="chips" id="cf"></div>
+</div>
+
+<main>
+<div id="msg"></div>
+
+<section class="pane on" id="pane-pauta">
+  <h2>Resumen <small id="rango1"></small></h2>
+  <div class="kpis" id="kpis"></div>
+
+  <h2>Rendimiento por fecha</h2>
+  <div class="card">
+    <div class="bar">
+      <div class="seg" id="metSel"></div><span class="sep"></span>
+      <div class="seg" id="granSel"></div>
+    </div>
+    <div class="chart"><canvas id="chEvo"></canvas></div>
+  </div>
+
+  <h2>Por canal</h2>
+  <div class="card tbl"><table id="tCanal"></table></div>
+
+  <h2>Mes a mes <small>año a la fecha</small></h2>
+  <div class="card tbl"><table id="tMes"></table></div>
+
+  <h2>Canal, campaña y anuncio <small>en el periodo elegido</small></h2>
+  <div class="card tbl"><table id="tArbol"></table></div>
+
+  <h2>Piezas con más inversión <small>en el periodo elegido, con su preview</small></h2>
+  <div class="gal" id="galPauta"></div>
+</section>
+
+<section class="pane" id="pane-org">
+  <h2>Resumen <small id="rango2"></small></h2>
+  <div class="kpis" id="kpisO"></div>
+
+  <div class="grid2">
+    <div>
+      <h2>Seguidores por día</h2>
+      <div class="card"><div class="chart"><canvas id="chSeg"></canvas></div></div>
+    </div>
+    <div>
+      <h2>Interacciones por publicación <small>por semana</small></h2>
+      <div class="card"><div class="chart"><canvas id="chInt"></canvas></div></div>
+    </div>
+  </div>
+
+  <h2>Por tipo de publicación</h2>
+  <div class="card tbl"><table id="tOrg"></table></div>
+
+  <h2>Publicaciones con más interacciones <small>en el periodo elegido</small></h2>
+  <div class="gal" id="galOrg"></div>
+
+  <h2>Todas las publicaciones</h2>
+  <div class="card tbl"><table id="tPosts"></table><button class="more" id="moreP">Ver más</button></div>
+</section>
+</main>
+
+<script>
+const SHEET_ID = '1TwKBmr3DpuvUZGC91UwDleQ9gW0SkrGsfFbdqdzAM-0';
+const DEV = new URLSearchParams(location.search).get('csv'); // solo para pruebas locales
+const GV = n => DEV ? `${DEV}/${n}.csv` : `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(n)}`;
+const CANALES = ['Meta','TikTok','Google'];
+const COL = {Meta:'#4C78D8',TikTok:'#1F1F1F',Google:'#F2B300',Facebook:'#4C78D8','Facebook Reel':'#8FB0EE',TikTok_o:'#1F1F1F'};
+const TIPOS = {Facebook:'Facebook · publicación','Facebook Reel':'Facebook · reel',TikTok:'TikTok · video'};
+const N = v => { const x = parseFloat(String(v).replace(',','.')); return isFinite(x) ? x : 0; };
+const fmt = (v,d=0) => new Intl.NumberFormat('es-CO',{maximumFractionDigits:d,minimumFractionDigits:d}).format(v);
+const cop = v => '$' + fmt(Math.round(v));
+const pct = v => fmt(v*100,1) + '%';
+const dash = '–';
+const esc = s => String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const $ = id => document.getElementById(id);
+
+/* ---------- fechas ---------- */
+const addD = (s,n) => { const d = new Date(s+'T12:00:00Z'); d.setUTCDate(d.getUTCDate()+n); return d.toISOString().slice(0,10); };
+const diff = (a,b) => Math.round((new Date(b+'T12:00:00Z')-new Date(a+'T12:00:00Z'))/864e5);
+const monday = s => { const d = new Date(s+'T12:00:00Z'); const w = (d.getUTCDay()+6)%7; return addD(s,-w); };
+const MESES = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+const fCorta = s => { const [y,m,d] = s.split('-'); return `${+d} ${MESES[+m-1]}`; };
+const fLarga = s => { const [y,m,d] = s.split('-'); return `${+d} ${MESES[+m-1]} ${y}`; };
+const mesLbl = k => { const [y,m] = k.split('-'); return `${MESES[+m-1]} ${y}`; };
+
+/* ---------- estado ---------- */
+const S = { from:'', to:'', canal:'Todos', red:'Todas', met:'inv', gran:'dia', pane:'pauta', maxD:'', minD:'', postsN:20 };
+let P = [], PREV = {}, POSTS = [], SEG = [], CTRL = {}, charts = {};
+
+function cargar(nombre){
+  return new Promise((ok,ko) => Papa.parse(GV(nombre),{download:true,header:true,skipEmptyLines:true,
+    complete:r => ok(r.data), error:e => ko(new Error(nombre+': '+(e.message||e)))}));
+}
+
+Promise.all(['META_DIA','TIKTOK_DIA','GOOGLE_DIA','PREVIEWS','ORGANICO_POSTS','ORGANICO_DIA','CONTROL'].map(cargar)).then(([m,t,g,pv,po,sg,ct]) => {
+  if(!m.length && !t.length && !g.length) throw new Error('La hoja no devolvió datos. Revisa que esté compartida con "Cualquier persona con el enlace puede ver".');
+  m.forEach(r => P.push({d:r.fecha,canal:'Meta',camp:r.campana,grupo:r.conjunto,id:r.anuncio_id,ad:r.anuncio,
+    inv:N(r.inversion),imp:N(r.impresiones),clic:N(r.clics_enlace),rep:N(r.reproducciones),int:N(r.interacciones)}));
+  t.forEach(r => P.push({d:r.fecha,canal:'TikTok',camp:r.campana,grupo:r.grupo,id:r.anuncio_id,ad:r.anuncio,
+    inv:N(r.inversion),imp:N(r.impresiones),clic:N(r.clics),rep:N(r.reproducciones),int:N(r.likes)+N(r.comentarios)+N(r.compartidos)+N(r.seguidores)}));
+  g.forEach(r => P.push({d:r.fecha,canal:'Google',camp:r.campana,grupo:r.grupo,id:r.anuncio_id,ad:r.anuncio||('Anuncio '+r.anuncio_id),
+    inv:N(r.inversion),imp:N(r.impresiones),clic:N(r.clics),rep:N(r.reproducciones),int:0}));
+  P = P.filter(r => /^\d{4}-\d{2}-\d{2}$/.test(r.d));
+  pv.forEach(r => PREV[r.canal+'|'+r.anuncio_id] = r);
+  po.forEach(r => POSTS.push({red:r.red,d:r.fecha,id:r.id,tipo:r.tipo,url:r.enlace,img:r.imagen,txt:r.texto,
+    impr:N(r.impresiones),alc:N(r.alcance),rea:N(r.reacciones_o_likes),com:N(r.comentarios),sh:N(r.compartidos),
+    clic:N(r.clics),rep:N(r.reproducciones),eng:r.engagement===''?null:N(r.engagement)}));
+  POSTS.forEach(p => p.int = p.rea+p.com+p.sh);
+  sg.forEach(r => SEG.push({d:r.fecha,red:r.red,n:N(r.seguidores)}));
+  ct.forEach(r => CTRL[r.Dato||r.Fuente] = r.Valor||r['Última actualización']);
+  S.maxD = P.reduce((a,r)=>r.d>a?r.d:a,'0000'); S.minD = P.reduce((a,r)=>r.d<a?r.d:a,'9999');
+  const upd = (ct.find(r=>r.Dato==='Última actualización')||{}).Valor;
+  $('upd').textContent = upd ? 'Actualizado ' + upd : '';
+  const malos = ct.filter(r=>r.Estado==='ERROR').map(r=>r.Fuente);
+  if(malos.length) $('msg').innerHTML = `<div class="err">Sin datos recientes de: ${esc(malos.join(', '))}. Revisa la pestaña CONTROL de la fuente.</div>`;
+  iniciar();
+}).catch(e => { $('msg').innerHTML = `<div class="err">${esc(e.message)}</div>`; });
+
+/* ---------- filtros ---------- */
+function presets(){
+  const mx = S.maxD, y = mx.slice(0,4), mes0 = mx.slice(0,7)+'-01';
+  const pm1 = addD(mes0,-1), pm0 = pm1.slice(0,7)+'-01';
+  return [
+    ['Este mes', mes0, mx], ['Mes anterior', pm0, pm1],
+    ['Últimos 7 días', addD(mx,-6), mx], ['Últimos 30 días', addD(mx,-29), mx],
+    ['Año a la fecha', y+'-01-01', mx],
+  ];
+}
+function iniciar(){
+  const pr = presets();
+  $('presets').innerHTML = pr.map((p,i)=>`<button class="chip" data-i="${i}">${p[0]}</button>`).join('');
+  $('presets').onclick = e => { const b = e.target.closest('[data-i]'); if(!b) return; const p = pr[+b.dataset.i]; S.from = p[1]; S.to = p[2]; sync(); };
+  $('f1').onchange = () => { S.from = $('f1').value || S.from; sync(); };
+  $('f2').onchange = () => { S.to = $('f2').value || S.to; sync(); };
+  document.querySelectorAll('nav.tabs button').forEach(b => b.onclick = () => { S.pane = b.dataset.p; sync(); });
+  $('cf').onclick = e => { const b = e.target.closest('[data-v]'); if(!b) return; if(S.pane==='pauta') S.canal = b.dataset.v; else S.red = b.dataset.v; sync(); };
+  const met = [['inv','Inversión'],['imp','Impresiones'],['clic','Clics'],['rep','Reproducciones'],['int','Interacciones']];
+  $('metSel').innerHTML = met.map(m=>`<button class="chip" data-v="${m[0]}">${m[1]}</button>`).join('');
+  $('metSel').onclick = e => { const b = e.target.closest('[data-v]'); if(b){ S.met = b.dataset.v; sync(); } };
+  $('granSel').innerHTML = [['dia','Día'],['sem','Semana'],['mes','Mes']].map(m=>`<button class="chip" data-v="${m[0]}">${m[1]}</button>`).join('');
+  $('granSel').onclick = e => { const b = e.target.closest('[data-v]'); if(b){ S.gran = b.dataset.v; sync(); } };
+  $('tArbol').onclick = e => { const t = e.target.closest('[data-k]'); if(t) toggle(t.dataset.k); };
+  $('moreP').onclick = () => { S.postsN += 30; pintarOrg(); };
+  [S.from,S.to] = [pr[0][1],pr[0][2]];
+  sync();
+}
+function sync(){
+  if(S.from > S.to) [S.from,S.to] = [S.to,S.from];
+  $('f1').value = S.from; $('f2').value = S.to;
+  const pr = presets();
+  document.querySelectorAll('#presets .chip').forEach((b,i)=>b.classList.toggle('on', pr[i][1]===S.from && pr[i][2]===S.to));
+  document.querySelectorAll('nav.tabs button').forEach(b=>b.classList.toggle('on', b.dataset.p===S.pane));
+  $('pane-pauta').classList.toggle('on', S.pane==='pauta'); $('pane-org').classList.toggle('on', S.pane==='org');
+  const op = S.pane==='pauta' ? ['Todos',...CANALES] : ['Todas','Facebook','TikTok'];
+  const cur = S.pane==='pauta' ? S.canal : S.red;
+  $('cf').innerHTML = op.map(o=>`<button class="chip ${o===cur?'on':''}" data-v="${o}">${o}</button>`).join('');
+  document.querySelectorAll('#metSel .chip').forEach(b=>b.classList.toggle('on',b.dataset.v===S.met));
+  document.querySelectorAll('#granSel .chip').forEach(b=>b.classList.toggle('on',b.dataset.v===S.gran));
+  const rg = `${fLarga(S.from)} al ${fLarga(S.to)}`;
+  $('rango1').textContent = rg; $('rango2').textContent = rg;
+  if(S.pane==='pauta') pintarPauta(); else pintarOrg();
+}
+
+/* ---------- agregación de pauta ---------- */
+const enRango = (rows,a,b) => rows.filter(r => r.d>=a && r.d<=b);
+const porCanal = rows => S.canal==='Todos' ? rows : rows.filter(r=>r.canal===S.canal);
+const suma = rows => rows.reduce((a,r)=>{a.inv+=r.inv;a.imp+=r.imp;a.clic+=r.clic;a.rep+=r.rep;a.int+=r.int;return a;},{inv:0,imp:0,clic:0,rep:0,int:0});
+const div = (a,b) => b>0 ? a/b : null;
+const cpm = s => div(s.inv*1000,s.imp);
+// costo por clic / reproducción / interacción: solo con los canales que reportan esa métrica (mínimo 30), para no dividir inversión de un canal entre resultados de otro
+const MIN = 30;
+function costoDe(rows,campo){
+  let inv = 0, v = 0;
+  CANALES.forEach(c => { const rr = rows.filter(r=>r.canal===c); const t = rr.reduce((a,r)=>a+r[campo],0);
+    if(t >= MIN){ inv += rr.reduce((a,r)=>a+r.inv,0); v += t; } });
+  return v>0 ? inv/v : null;
+}
+const mon = v => v===null ? dash : (v<100 ? '$'+fmt(v,1) : cop(v));
+const dnum = v => v===null ? dash : fmt(v);
+
+function delta(cur,prev,costo,neutro){
+  if(prev===null || prev===0 || cur===null) return '<div class="d">&nbsp;</div>';
+  const c = (cur-prev)/prev, up = c>=0;
+  const cls = neutro ? '' : (costo ? (up?'up-bad':'dn-good') : (up?'up-good':'dn-bad'));
+  return `<div class="d ${cls}">${up?'▲':'▼'} ${fmt(Math.abs(c)*100,0)}% vs periodo anterior</div>`;
+}
+
+function pintarPauta(){
+  const len = diff(S.from,S.to)+1;
+  const pf = addD(S.from,-len), pt = addD(S.from,-1);
+  const base = porCanal(P);
+  const cur = enRango(base,S.from,S.to), ant = enRango(base,pf,pt);
+  const a = suma(cur), b = suma(ant);
+
+  const K = [
+    ['Inversión',cop(a.inv),delta(a.inv,b.inv,true,true)],
+    ['Impresiones',fmt(a.imp),delta(a.imp,b.imp)],
+    ['CPM',mon(cpm(a)),delta(cpm(a),cpm(b),true)],
+    ['Clics',fmt(a.clic),delta(a.clic,b.clic)],
+    ['Costo por clic',mon(costoDe(cur,'clic')),delta(costoDe(cur,'clic'),costoDe(ant,'clic'),true)],
+    ['Reproducciones',fmt(a.rep),delta(a.rep,b.rep)],
+    ['Costo por reproducción',mon(costoDe(cur,'rep')),delta(costoDe(cur,'rep'),costoDe(ant,'rep'),true)],
+    ['Interacciones',fmt(a.int),delta(a.int,b.int)],
+    ['Costo por interacción',mon(costoDe(cur,'int')),delta(costoDe(cur,'int'),costoDe(ant,'int'),true)],
+  ];
+  $('kpis').innerHTML = K.map(k=>`<div class="kpi"><div class="l">${k[0]}</div><div class="v">${k[1]}</div>${k[2]}</div>`).join('');
+
+  evolucion(cur);
+  tablaCanal(enRango(P,S.from,S.to));
+  tablaMes();
+  arbol(cur);
+  galeriaPauta(cur);
+}
+
+function killChart(k){ if(charts[k]){ charts[k].destroy(); delete charts[k]; } }
+
+function evolucion(rows){
+  const key = r => S.gran==='dia' ? r.d : S.gran==='sem' ? monday(r.d) : r.d.slice(0,7);
+  const lbl = k => S.gran==='mes' ? mesLbl(k) : fCorta(k);
+  const keys = [...new Set(rows.map(key))].sort();
+  const canales = S.canal==='Todos' ? CANALES : [S.canal];
+  const ds = canales.map(c => ({label:c,backgroundColor:COL[c],borderRadius:2,
+    data:keys.map(k=>rows.filter(r=>r.canal===c && key(r)===k).reduce((s,r)=>s+r[S.met],0))}));
+  killChart('evo');
+  const esMon = S.met==='inv';
+  charts.evo = new Chart($('chEvo'),{type:'bar',data:{labels:keys.map(lbl),datasets:ds},options:{
+    responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},layout:{padding:{left:6}},
+    plugins:{legend:{position:'bottom',labels:{boxWidth:10,font:{family:'Poppins',size:11}}},
+      tooltip:{callbacks:{label:c=>`${c.dataset.label}: ${esMon?cop(c.raw):fmt(c.raw)}`,footer:i=>'Total: '+(esMon?cop(i.reduce((s,x)=>s+x.raw,0)):fmt(i.reduce((s,x)=>s+x.raw,0)))}}},
+    scales:{x:{stacked:true,grid:{display:false},ticks:{font:{family:'Poppins',size:10},maxTicksLimit:16}},
+      y:{stacked:true,ticks:{font:{family:'Poppins',size:10},callback:v=>esMon?'$'+fmt(v/1000)+' mil':fmt(v)}}}}});
+}
+
+function tablaCanal(rows){
+  const tot = suma(rows);
+  const fila = (n,rr,color,cls='') => { const s = suma(rr); return `<tr${cls?` class="${cls}"`:''}><td>${color?`<span class="dot" style="background:${color}"></span>`:''}${n}</td><td>${cop(s.inv)}</td><td>${tot.inv?pct(s.inv/tot.inv):dash}</td><td>${fmt(s.imp)}</td><td>${mon(cpm(s))}</td><td>${fmt(s.clic)}</td><td>${mon(costoDe(rr,'clic'))}</td><td>${s.rep?fmt(s.rep):dash}</td><td>${mon(costoDe(rr,'rep'))}</td><td>${s.int?fmt(s.int):dash}</td><td>${mon(costoDe(rr,'int'))}</td></tr>`; };
+  $('tCanal').innerHTML = `<thead><tr><th>Canal</th><th>Inversión</th><th>%</th><th>Impresiones</th><th>CPM</th><th>Clics</th><th>CPC</th><th>Reproducciones</th><th>Costo/repr.</th><th>Interacciones</th><th>Costo/inter.</th></tr></thead><tbody>${CANALES.map(c=>fila(c,rows.filter(r=>r.canal===c),COL[c])).join('')}${fila('Total',rows,'','tot')}</tbody>`;
+}
+
+function tablaMes(){
+  const rows = porCanal(P), y = S.maxD.slice(0,4);
+  const meses = [...new Set(rows.filter(r=>r.d.startsWith(y)).map(r=>r.d.slice(0,7)))].sort();
+  const cab = CANALES.map(c=>`<th>${c}</th>`).join('');
+  const f = m => { const rr = rows.filter(r=>r.d.startsWith(m)); const s = suma(rr);
+    return `<tr><td>${mesLbl(m)}</td>${CANALES.map(c=>`<td>${cop(rr.filter(r=>r.canal===c).reduce((x,r)=>x+r.inv,0))}</td>`).join('')}<td><b>${cop(s.inv)}</b></td><td>${fmt(s.imp)}</td><td>${mon(cpm(s))}</td><td>${fmt(s.clic)}</td><td>${s.rep?fmt(s.rep):dash}</td><td>${s.int?fmt(s.int):dash}</td></tr>`; };
+  const t = suma(rows.filter(r=>r.d.startsWith(y)));
+  $('tMes').innerHTML = `<thead><tr><th>Mes</th>${cab}<th>Total inversión</th><th>Impresiones</th><th>CPM</th><th>Clics</th><th>Reproducciones</th><th>Interacciones</th></tr></thead><tbody>${meses.map(f).join('')}<tr class="tot"><td>Total ${y}</td>${CANALES.map(c=>`<td>${cop(rows.filter(r=>r.d.startsWith(y)&&r.canal===c).reduce((x,r)=>x+r.inv,0))}</td>`).join('')}<td>${cop(t.inv)}</td><td>${fmt(t.imp)}</td><td>${mon(cpm(t))}</td><td>${fmt(t.clic)}</td><td>${t.rep?fmt(t.rep):dash}</td><td>${t.int?fmt(t.int):dash}</td></tr></tbody>`;
+}
+
+/* ---------- árbol canal > campaña > anuncio ---------- */
+function agrupa(rows,kf){ const m = new Map(); rows.forEach(r=>{ const k = kf(r); if(!m.has(k)) m.set(k,[]); m.get(k).push(r); }); return m; }
+function arbol(rows){
+  let h = `<thead><tr><th>Nombre</th><th>Inversión</th><th>Impresiones</th><th>CPM</th><th>Clics</th><th>Reproducciones</th><th>Interacciones</th></tr></thead><tbody>`;
+  const fila = (cls,k,nombre,s,hid,extra='') => `<tr class="${cls}${hid?' hid':''}" data-row="${k}"><td class="nm"><span class="tg" data-k="${k}">▸</span>${extra}${nombre}</td><td>${cop(s.inv)}</td><td>${fmt(s.imp)}</td><td>${mon(cpm(s))}</td><td>${fmt(s.clic)}</td><td>${s.rep?fmt(s.rep):dash}</td><td>${s.int?fmt(s.int):dash}</td></tr>`;
+  const ord = m => [...m.entries()].sort((a,b)=>suma(b[1]).inv-suma(a[1]).inv);
+  ord(agrupa(rows,r=>r.canal)).forEach(([c,rc],i) => {
+    h += fila('l1',`c${i}`,`<span class="dot" style="background:${COL[c]}"></span>${c}`,suma(rc),false);
+    ord(agrupa(rc,r=>r.camp)).forEach(([cp,rp],j) => {
+      h += fila('l2',`c${i}/p${j}`,esc(cp),suma(rp),true);
+      ord(agrupa(rp,r=>r.id)).forEach(([id,ra]) => {
+        const pv = PREV[c+'|'+id], im = pv && pv.imagen ? `<img class="thumb" loading="lazy" src="${esc(pv.imagen)}" onerror="this.style.visibility='hidden'">` : '';
+        const nm = pv && (pv.preview||pv.publicacion_o_destino) ? `<a href="${esc(pv.preview||pv.publicacion_o_destino)}" target="_blank" rel="noopener" style="color:inherit">${esc(ra[0].ad)}</a>` : esc(ra[0].ad);
+        h += `<tr class="l3 hid" data-row="c${i}/p${j}/a"><td class="nm"><span class="tg"></span>${im}${nm}</td><td>${cop(suma(ra).inv)}</td><td>${fmt(suma(ra).imp)}</td><td>${mon(cpm(suma(ra)))}</td><td>${fmt(suma(ra).clic)}</td><td>${suma(ra).rep?fmt(suma(ra).rep):dash}</td><td>${suma(ra).int?fmt(suma(ra).int):dash}</td></tr>`;
+      });
+    });
+  });
+  $('tArbol').innerHTML = h + '</tbody>';
+}
+function toggle(k){
+  const tg = document.querySelector(`[data-k="${k}"]`);
+  const open = tg.textContent === '▸';
+  tg.textContent = open ? '▾' : '▸';
+  document.querySelectorAll('#tArbol tbody tr').forEach(tr => {
+    const r = tr.dataset.row;
+    if(r === k || !r.startsWith(k + '/')) return;
+    const rel = r.slice(k.length+1).split('/');
+    if(open){ if(rel.length===1) tr.classList.remove('hid'); }
+    else { tr.classList.add('hid'); const t2 = tr.querySelector('.tg[data-k]'); if(t2) t2.textContent = '▸'; }
+  });
+}
+
+function galeriaPauta(rows){
+  const top = [...agrupa(rows,r=>r.canal+'|'+r.id).entries()].map(([k,rr])=>({k,rr,s:suma(rr)})).sort((a,b)=>b.s.inv-a.s.inv).slice(0,12);
+  $('galPauta').innerHTML = top.length ? top.map(t => {
+    const r0 = t.rr[0], pv = PREV[t.k] || {}, s = t.s;
+    const lnk = pv.preview || pv.publicacion_o_destino;
+    const m = r0.canal==='Google' ? `<b>${fmt(s.rep)}</b> reprod. · <b>${fmt(s.clic)}</b> clics` : `<b>${fmt(s.rep||s.clic)}</b> ${s.rep?'reprod.':'clics'} · <b>${fmt(s.int)}</b> interac.`;
+    return `<div class="pz"><div class="im">${pv.imagen?`<img loading="lazy" src="${esc(pv.imagen)}" alt="" onerror="this.parentNode.textContent='Sin vista previa'">`:'Sin vista previa'}</div>
+      <div class="tx"><div><span class="badge" style="color:${COL[r0.canal]==='#1F1F1F'?'#1F1F1F':COL[r0.canal]}">${r0.canal}</span>${pv.formato?`<span class="badge">${esc(pv.formato)}</span>`:''}</div>
+      <div class="nm2">${esc(r0.ad)}</div><div class="mt"><b>${cop(s.inv)}</b> · ${fmt(s.imp)} impr.</div><div class="mt">${m}</div>
+      ${lnk?`<a href="${esc(lnk)}" target="_blank" rel="noopener">Ver preview</a>`:''}</div></div>`;
+  }).join('') : '<div class="empty">Sin anuncios en este periodo.</div>';
+}
+
+/* ---------- orgánico ---------- */
+const porRed = rows => S.red==='Todas' ? rows : rows.filter(r => S.red==='Facebook' ? r.red.startsWith('Facebook') : r.red==='TikTok');
+const sumaO = rows => rows.reduce((a,p)=>{a.n++;a.impr+=p.impr;a.rep+=p.rep;a.int+=p.int;a.rea+=p.rea;a.com+=p.com;a.sh+=p.sh;if(p.eng!==null){a.e+=p.eng;a.ne++;}return a;},{n:0,impr:0,rep:0,int:0,rea:0,com:0,sh:0,e:0,ne:0});
+
+function segDe(red,a,b){
+  const r = SEG.filter(x=>x.red===red).sort((x,y)=>x.d<y.d?-1:1);
+  const fin = [...r].reverse().find(x=>x.d<=b), ini = [...r].reverse().find(x=>x.d<a) || r[0];
+  return fin ? {fin:fin.n, neto: ini ? fin.n-ini.n : 0} : null;
+}
+
+function pintarOrg(){
+  const len = diff(S.from,S.to)+1, pf = addD(S.from,-len), pt = addD(S.from,-1);
+  const base = porRed(POSTS), cur = enRango(base,S.from,S.to), ant = enRango(base,pf,pt);
+  const a = sumaO(cur), b = sumaO(ant);
+  const K = [['Publicaciones',fmt(a.n),delta(a.n,b.n)],['Reproducciones',fmt(a.rep),delta(a.rep,b.rep)],
+    ['Impresiones',fmt(a.impr),delta(a.impr,b.impr)],['Interacciones',fmt(a.int),delta(a.int,b.int)],
+    ['Interacciones por publicación',a.n?fmt(a.int/a.n,1):dash,delta(a.n?a.int/a.n:null,b.n?b.int/b.n:null)],
+    ['Engagement promedio',a.ne?fmt(a.e/a.ne,1)+'%':dash,delta(a.ne?a.e/a.ne:null,b.ne?b.e/b.ne:null)]];
+  ['Facebook','TikTok'].forEach(r => { if(S.red==='Todas'||S.red===r){ const s = segDe(r,S.from,S.to);
+    if(s) K.push([`Seguidores ${r}`,fmt(s.fin),`<div class="d ${s.neto>0?'up-good':s.neto<0?'up-bad':''}">${s.neto>0?'+':''}${fmt(s.neto)} en el periodo</div>`]); }});
+  $('kpisO').innerHTML = K.map(k=>`<div class="kpi"><div class="l">${k[0]}</div><div class="v">${k[1]}</div>${k[2]}</div>`).join('');
+
+  // seguidores
+  const dias = [...new Set(SEG.filter(x=>x.d>=S.from&&x.d<=S.to).map(x=>x.d))].sort();
+  const reds = (S.red==='Todas'?['Facebook','TikTok']:[S.red]);
+  killChart('seg');
+  charts.seg = new Chart($('chSeg'),{type:'line',data:{labels:dias.map(fCorta),datasets:reds.map((r,i)=>({label:r,borderColor:r==='Facebook'?COL.Facebook:COL.TikTok,backgroundColor:'transparent',borderWidth:2,pointRadius:0,tension:.25,yAxisID:'y'+i,
+    data:dias.map(d=>{const x=SEG.find(s=>s.red===r&&s.d===d);return x?x.n:null;})}))},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
+    plugins:{legend:{position:'bottom',labels:{boxWidth:10,font:{family:'Poppins',size:11}}}},
+    scales:{x:{grid:{display:false},ticks:{font:{family:'Poppins',size:10},maxTicksLimit:12}},
+      y0:{position:'left',ticks:{font:{family:'Poppins',size:10},callback:v=>fmt(v)}},
+      y1:{position:'right',display:reds.length>1,grid:{display:false},ticks:{font:{family:'Poppins',size:10},callback:v=>fmt(v)}}}}});
+
+  // interacciones por semana
+  const sem = [...new Set(cur.map(p=>monday(p.d)))].sort();
+  const tipos = ['Facebook','Facebook Reel','TikTok'].filter(t=>cur.some(p=>p.red===t));
+  killChart('int');
+  charts.int = new Chart($('chInt'),{type:'bar',data:{labels:sem.map(fCorta),datasets:tipos.map(t=>({label:TIPOS[t],backgroundColor:COL[t],borderRadius:2,
+    data:sem.map(s=>cur.filter(p=>p.red===t&&monday(p.d)===s).reduce((x,p)=>x+p.int,0))}))},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
+    plugins:{legend:{position:'bottom',labels:{boxWidth:10,font:{family:'Poppins',size:11}}}},
+    scales:{x:{stacked:true,grid:{display:false},ticks:{font:{family:'Poppins',size:10}}},y:{stacked:true,ticks:{font:{family:'Poppins',size:10}}}}}});
+
+  // por tipo
+  const filaT = (n,s,tot) => `<tr${tot?' class="tot"':''}><td>${n}</td><td>${fmt(s.n)}</td><td>${s.impr?fmt(s.impr):dash}</td><td>${s.rep?fmt(s.rep):dash}</td><td>${fmt(s.int)}</td><td>${s.n?fmt(s.int/s.n,1):dash}</td><td>${s.ne?fmt(s.e/s.ne,1)+'%':dash}</td></tr>`;
+  $('tOrg').innerHTML = `<thead><tr><th>Tipo</th><th>Publicaciones</th><th>Impresiones</th><th>Reproducciones</th><th>Interacciones</th><th>Inter./publicación</th><th>Engagement prom.</th></tr></thead><tbody>${['Facebook','Facebook Reel','TikTok'].filter(t=>base.some(p=>p.red===t)).map(t=>filaT(TIPOS[t],sumaO(cur.filter(p=>p.red===t)))).join('')}${filaT('Total',a,true)}</tbody>`;
+
+  // galería
+  const top = [...cur].sort((x,y)=>y.int-x.int).slice(0,12);
+  $('galOrg').innerHTML = top.length ? top.map(p=>`<div class="pz"><div class="im">${p.img?`<img loading="lazy" src="${esc(p.img)}" alt="" onerror="this.parentNode.textContent='Sin vista previa'">`:'Sin vista previa'}</div>
+    <div class="tx"><div><span class="badge">${TIPOS[p.red]||p.red}</span><span class="badge">${fCorta(p.d)}</span></div>
+    <div class="mt">${esc((p.txt||'').slice(0,110))}${(p.txt||'').length>110?'…':''}</div>
+    <div class="mt"><b>${fmt(p.int)}</b> interac.${p.rep?` · <b>${fmt(p.rep)}</b> reprod.`:''}${p.impr?` · <b>${fmt(p.impr)}</b> impr.`:''}</div>
+    ${p.url?`<a href="${esc(p.url)}" target="_blank" rel="noopener">Ver publicación</a>`:''}</div></div>`).join('') : '<div class="empty">Sin publicaciones en este periodo.</div>';
+
+  // todas
+  const lista = [...cur].sort((x,y)=>x.d<y.d?1:-1);
+  $('tPosts').innerHTML = `<thead><tr><th>Fecha</th><th>Tipo</th><th style="text-align:left">Texto</th><th>Reacciones</th><th>Comentarios</th><th>Compartidos</th><th>Reproducciones</th><th>Impresiones</th></tr></thead><tbody>${lista.slice(0,S.postsN).map(p=>`<tr><td>${fCorta(p.d)}</td><td>${TIPOS[p.red]||p.red}</td><td class="nm" style="text-align:left">${p.url?`<a href="${esc(p.url)}" target="_blank" rel="noopener" style="color:inherit">${esc((p.txt||'').slice(0,90)||'(sin texto)')}</a>`:esc((p.txt||'').slice(0,90))}</td><td>${fmt(p.rea)}</td><td>${fmt(p.com)}</td><td>${fmt(p.sh)}</td><td>${p.rep?fmt(p.rep):dash}</td><td>${p.impr?fmt(p.impr):dash}</td></tr>`).join('')}</tbody>`;
+  $('moreP').style.display = lista.length > S.postsN ? 'block' : 'none';
+}
+</script>
+</body>
+</html>
