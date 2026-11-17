@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Huevos Oro | Tablero de pauta y orgánico</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="../assets/css/adcom.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<style>
+
+:root{
+  --black:#050505;--white:#fcfcfa;--yellow:#ffd400;
+  --gray-50:var(--ground);--gray-100:var(--sunken);--gray-200:var(--rule);--gray-400:var(--fg-muted);--gray-600:var(--fg-secondary);
+  --sidebar:230px;--r-sm:8px;--r-md:12px;
+  --c-pos:#15803d;--c-mid:#b45309;--c-neg:#b91c1c
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Poppins',sans-serif;background:var(--gray-50);color:var(--black);min-height:100vh;overflow-x:hidden}
+.main{flex:1;display:flex;flex-direction:column;min-width:0}
+
+/* TOPBAR */
+.topbar{background:var(--white);border-bottom:1px solid var(--gray-200);padding:10px 20px;position:sticky;top:0;z-index:50;display:flex;flex-direction:column;gap:8px}
+.tb-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.topbar-title{font-size:12px;font-weight:700;margin-right:4px;white-space:nowrap}
+.f-sep{width:1px;height:18px;background:var(--gray-200)}
+.fg{display:flex;align-items:center;gap:5px}
+.fl{font-size:12px;color:var(--gray-600);font-weight:500;white-space:nowrap}
+select,input[type=date],input[type=search]{font-family:'Poppins',sans-serif;font-size:12px;padding:5px 8px;border:1px solid var(--gray-200);border-radius:var(--radius-sm);background:var(--white);color:var(--black);outline:none}
+select{cursor:pointer;max-width:220px}
+select:focus,input:focus{border-color:var(--accent-fg)}
+.qbtn{font-family:'Poppins',sans-serif;font-size:12px;font-weight:500;padding:4px 10px;border:1px solid var(--gray-200);background:var(--white);border-radius:999px;cursor:pointer;color:var(--gray-600)}
+.qbtn:hover{border-color:var(--black);color:var(--black)}
+.qbtn.on{background:var(--black);color:var(--white);border-color:var(--black)}
+.btn-reset{font-family:'Poppins',sans-serif;font-size:12px;font-weight:600;padding:5px 10px;background:var(--black);color:var(--white);border:none;border-radius:var(--radius-sm);cursor:pointer}
+.chk{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--gray-600);cursor:pointer;white-space:nowrap}
+.last-upd{margin-left:auto;font-size:12px;color:var(--gray-400)}
+
+/* CONTENT */
+.content{padding:18px 20px;min-width:0}
+.sec-title{font-size:13px;font-weight:700;margin:4px 0 10px;display:flex;align-items:center;gap:7px;scroll-margin-top:110px}
+.sec-title>span:first-child{display:inline-block;width:3px;height:13px;background:var(--yellow);flex-shrink:0}
+.sec-note{font-size:12px;color:var(--gray-400);font-weight:400;margin-left:6px}
+.card{background:var(--white);border-radius:var(--r-md);border:1px solid var(--gray-200)}
+
+/* KPIs */
+.kpi-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:20px}
+.kpi-card{padding:14px}
+.kpi-label{font-size:12px;color:var(--gray-600);font-weight:600;margin-bottom:3px}
+.kpi-value{font-size:20px;font-weight:700;line-height:1.15;font-variant-numeric:tabular-nums}
+.kpi-sub{font-size:12px;color:var(--gray-400);margin-top:3px}
+.kpi-bwrap{margin-top:8px}
+.kpi-brow{display:flex;justify-content:space-between;font-size:11px;color:var(--gray-600);margin-bottom:3px}
+.kpi-bar{height:4px;background:var(--gray-200);border-radius:999px;overflow:hidden}
+.kpi-bfill{height:100%;border-radius:999px}
+.bg-pos{background:var(--c-pos)} .bg-mid{background:var(--c-mid)} .bg-neg{background:var(--c-neg)}
+.t-pos{color:var(--c-pos);font-weight:600} .t-mid{color:var(--c-mid);font-weight:600} .t-neg{color:var(--c-neg);font-weight:600} .t-mute{color:var(--gray-400)}
+
+/* EMBUDO */
+.funnel{padding:16px 18px;margin-bottom:20px;display:grid;grid-template-columns:1fr;gap:9px}
+.f-row{display:grid;grid-template-columns:150px 1fr 190px 190px;align-items:center;gap:12px}
+.f-head{font-size:11px;color:var(--gray-400);font-weight:600}
+.f-cost{font-size:12px;font-variant-numeric:tabular-nums;display:flex;justify-content:flex-end;align-items:baseline;gap:8px;border-left:1px solid var(--gray-200);padding-left:12px}
+.f-cost b{font-size:14px}
+.f-lbl{font-size:12px;font-weight:600;color:var(--gray-600)}
+.f-track{height:22px;background:var(--gray-100);border-radius:6px;overflow:hidden}
+.f-fill{height:100%;background:var(--yellow);border-radius:6px;min-width:2px}
+.f-fill.dark{background:var(--black)}
+.f-val{font-size:12px;font-variant-numeric:tabular-nums;display:flex;justify-content:space-between;gap:8px}
+.f-val b{font-size:14px}
+
+/* NIVEL / MEDIO */
+.two-col{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px}
+.nivel-card{padding:16px}
+.nivel-tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;margin-bottom:12px}
+.tag-pre{background:#FFF8E1;color:#92400E} .tag-pos{background:#EDE9FE;color:#4C1D95}
+.nm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px 10px}
+.nm-label{font-size:11px;color:var(--gray-400);font-weight:500}
+.nm-value{font-size:15px;font-weight:700;font-variant-numeric:tabular-nums}
+.chart-card{padding:14px;margin-bottom:20px}
+.chart-wrap{height:260px;position:relative}
+
+/* TABLAS */
+.tcard{margin-bottom:20px;overflow:hidden}
+.tbar{display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid var(--gray-100);flex-wrap:wrap}
+.tbar .sp{flex:1}
+.tbtn{font-family:'Poppins',sans-serif;font-size:12px;padding:4px 10px;border:1px solid var(--gray-200);background:var(--white);border-radius:var(--radius-sm);cursor:pointer}
+.tscroll{overflow-x:auto}
+.tscroll table{width:100%;min-width:0;border-collapse:collapse;font-size:12px}
+.tscroll thead tr{background:var(--gray-50);border-bottom:2px solid var(--gray-200)}
+.tscroll thead th{font-weight:700;padding:9px 10px;text-align:left;white-space:nowrap;color:var(--fg-muted);border-bottom:0;position:sticky;top:0;background:var(--gray-50)}
+.tscroll thead th.r{text-align:right}
+.tscroll thead th.sortable{cursor:pointer;user-select:none}
+.tscroll thead th.sortable:hover,.tscroll thead th.sort-act{color:var(--black)}
+.tscroll thead th.grp{border-left:1px solid var(--gray-200)}
+.tscroll tbody tr{border-bottom:1px solid var(--gray-100)}
+.tscroll tbody td{padding:7px 10px;color:var(--gray-600);white-space:nowrap;text-align:left;vertical-align:middle;border-top:0}
+.tscroll tbody td.r{text-align:right;font-variant-numeric:tabular-nums}
+.tscroll tbody td.grp{border-left:1px solid var(--gray-100)}
+.tscroll tbody tr:hover td{background:var(--gray-50)}
+.tscroll .tr-total td{font-weight:700;color:var(--black);background:var(--gray-50) !important;border-top:2px solid var(--gray-200) !important}
+.lv1 td{font-weight:600;color:var(--black)}
+.lv1{cursor:pointer}
+.lv2{cursor:pointer;background:#fafafa}
+.lv2 td:first-child{padding-left:30px}
+.lv3 td:first-child{padding-left:56px;color:var(--gray-600)}
+.lv2 td:first-child,.lv2 td{font-weight:500}
+.hidden{display:none}
+.tog{display:inline-block;transition:transform .18s;margin-right:6px;color:var(--accent-fg);font-size:11px;width:9px}
+.tog.open{transform:rotate(90deg)}
+.nv{display:inline-block;font-size:10px;font-weight:700;padding:0 5px;border-radius:999px;margin-left:6px;vertical-align:1px}
+.nv-pre{background:#FFF8E1;color:#92400E} .nv-pos{background:#EDE9FE;color:#4C1D95} .nv-gen{background:var(--gray-100);color:var(--gray-600)}
+.foot-note{font-size:11px;color:var(--gray-400);padding:8px 12px;border-top:1px solid var(--gray-100);line-height:1.5}
+@media(max-width:1700px){.tscroll thead th,.tscroll tbody td{font-size:11px;padding:6px 8px}}
+@media(max-width:1450px){.tscroll thead th,.tscroll tbody td{font-size:10px;padding:5px 6px}.lv2 td:first-child{padding-left:22px}.lv3 td:first-child{padding-left:40px}}
+
+/* LOADING */
+#loading{position:fixed;inset:0;background:rgba(10,10,10,.94);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999;gap:12px}
+.ld-logo img{height:36px}
+.spinner{width:28px;height:28px;border:3px solid #222;border-top-color:var(--accent-fg);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+#ld-msg{color:var(--fg-muted);font-size:12px}
+
+@media(max-width:1300px){.kpi-grid{grid-template-columns:repeat(3,1fr)}.nm-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.kpi-grid{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}.f-row{grid-template-columns:90px 1fr 120px 130px}.f-cost span{display:none}.content{padding:14px 16px}}
+.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.tag-pau{background:#FFF3B0;color:#7A5B00} .tag-org{background:#E0F2FE;color:#075985} .tag-otr{background:var(--gray-100);color:var(--gray-600)}
+@media(max-width:1300px){.three-col{grid-template-columns:1fr}}
+.nm-sub{margin-top:12px;padding-top:12px;border-top:1px solid var(--gray-200)}
+/* tarjetas por nivel: una fila por etapa; columnas alineadas (volumen · costo · tasa · meta · cumplimiento · extra) */
+.nv-chip{display:inline-flex;align-items:center;gap:6px;cursor:pointer;user-select:none}
+.nv-chip .car{font-size:10px;color:var(--gray-400);transition:transform .15s}
+.nv-chip.open .car{transform:rotate(90deg)}
+tr.nv-det td{background:var(--gray-50);padding:10px 14px}
+.nv-det-grid{display:grid;grid-template-columns:1fr;gap:6px}
+.nv-det-grp{display:flex;gap:16px;align-items:baseline}
+.nv-det-grp b{font-size:11px;color:var(--gray-600);min-width:90px}
+.nv-det-grp span{font-size:12px;color:var(--gray-400)} .nv-det-grp span i{font-style:normal;font-weight:700;color:var(--fg)}
+
+/* HUEVOS ORO: previews con la estructura del tablero de Altavista */
+.ad-ev{padding:14px 16px 16px;margin-bottom:12px}
+.ad-ev-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.ev-name{font-size:14px;font-weight:700}
+.ad-sub{margin-top:14px}.ad-sub:first-of-type{margin-top:0}
+.ad-sub-head{font-size:13px;font-weight:600;margin-bottom:10px;padding-top:12px;border-top:1px solid var(--gray-100)}
+.ad-sub:first-of-type .ad-sub-head{border-top:0;padding-top:0}
+.ad-strip{display:flex;gap:14px;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x proximity;scroll-behavior:smooth;align-items:flex-start}
+.ad-strip .ad-card{flex:0 0 336px;scroll-snap-align:start}
+.ad-strip::-webkit-scrollbar{height:8px}.ad-strip::-webkit-scrollbar-thumb{background:var(--gray-200);border-radius:999px}
+.car-nav{margin-left:auto;display:flex;gap:6px;align-items:center}
+.car-btn{width:30px;height:30px;border-radius:50%;border:1px solid var(--gray-200);background:var(--white);cursor:pointer;font-size:15px;line-height:1;color:var(--black)}
+.car-btn:hover{background:var(--black);color:var(--white);border-color:var(--black)}
+.ad-card{min-width:0;border:1px solid var(--gray-200);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;background:var(--white)}
+.ad-prev{height:610px;background:var(--gray-50);overflow:hidden;display:flex;justify-content:center}
+.ad-prev iframe{border:0;width:320px;height:100%}
+.ad-prev video{width:100%;height:100%;object-fit:contain;background:#000}
+.ad-prev img{width:100%;height:100%;object-fit:contain}
+.ad-prev.gg{height:auto;min-height:320px;align-items:center;background:var(--gray-100)}
+.ad-prev.gg iframe{width:100%;height:auto;aspect-ratio:16/9}
+.ad-prev .nop{align-self:center;font-size:12px;padding:20px;text-align:center;color:var(--gray-400)}
+.ad-body{padding:10px 12px 12px;display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--gray-100)}
+.ad-name{font-size:12px;font-weight:600;line-height:1.35;word-break:break-word;display:flex;justify-content:space-between;gap:8px}
+.ad-name a{font-weight:500;font-size:11px;white-space:nowrap;color:var(--black);border-bottom:2px solid var(--yellow);text-decoration:none;align-self:flex-start}
+.ad-txt{font-size:12px;color:var(--gray-600);line-height:1.4}
+.ad-nums{display:grid;grid-template-columns:repeat(3,1fr);gap:8px 6px}
+.ad-nums .nm-value{font-size:14px}
+.ad-share{height:4px;background:var(--gray-100);border-radius:999px}
+.ad-share div{height:100%;background:var(--yellow);border-radius:999px}
+.tag{display:inline-block;font-size:10.5px;font-weight:700;padding:1px 8px;border-radius:999px}
+.tag-act{background:#DCFCE7;color:#166534}.tag-pau{background:var(--gray-100);color:var(--gray-600)}
+.tag-org{background:#FFF3B0;color:#7A5B00}
+/* TikTok: el reproductor se carga al hacer clic (32 a la vez disparan el bloqueo de TikTok) */
+.fac{position:relative;width:100%;height:100%;cursor:pointer;background:#111;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.fac img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#111}
+.fac-play{position:relative;z-index:1;width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.92);color:#000;font-size:24px;display:flex;align-items:center;justify-content:center;padding-left:4px;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.fac-lbl{position:absolute;left:0;right:0;bottom:14px;z-index:1;text-align:center;color:#fff;font-size:12px;font-weight:600;text-shadow:0 1px 4px rgba(0,0,0,.7)}
+.pz-th{width:56px;height:56px;border-radius:6px;object-fit:cover;background:var(--gray-100);vertical-align:middle;margin-right:10px;flex:none}
+.pz-cell{display:flex;align-items:center;gap:0;min-width:240px;max-width:420px;white-space:normal}
+.pz-txt{font-size:12px;color:var(--black);line-height:1.35}
+@media(max-width:700px){.ad-prev{height:540px}.ad-prev iframe{width:100%}.ad-strip .ad-card{flex-basis:86vw}}
+.more{display:block;margin:2px auto 20px}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}
+.tscroll tbody td.nm{white-space:normal;min-width:240px;max-width:430px}
+.thumb{width:30px;height:30px;border-radius:6px;object-fit:cover;vertical-align:middle;margin-right:8px;background:var(--gray-100)}
+.sub-h{font-size:12px;font-weight:700;color:var(--gray-600);margin:2px 0 8px;text-transform:uppercase;letter-spacing:.4px}
+.app-sidebar-nav-title.t2{margin-top:14px}
+.err{background:#FFF3F0;border:1px solid #F3C9C0;color:#7A2A1F;padding:12px 16px;border-radius:10px;margin:0 0 14px}
+@media(max-width:900px){.app-sidebar{display:none}}
+
+</style>
+</head>
+<body class="con-shell">
+<div id="loading">
+  <div class="spinner"></div>
+  <div id="ld-msg">Cargando datos...</div>
+</div>
+
+<nav class="app-sidebar">
+  <div class="app-sidebar-top">
+    <a class="app-sidebar-brand" href="../index.html"><i></i>Adcom</a>
+    <div class="app-sidebar-client">
+      <span class="app-sidebar-client-label">Cliente</span>
+      <strong class="app-sidebar-client-name">Huevos Oro, pauta y orgánico</strong>
+    </div>
+  </div>
+  <div class="app-sidebar-nav">
+    <span class="app-sidebar-nav-title">Pauta</span>
+    <a href="#sec-kpi" class="active"><b></b>Resumen</a>
+    <a href="#sec-evo"><b></b>Rendimiento por fecha</a>
+    <a href="#sec-canal"><b></b>Por canal</a>
+    <a href="#sec-mes"><b></b>Mes a mes</a>
+    <a href="#sec-arbol"><b></b>Campaña y anuncio</a>
+    <a href="#sec-prev"><b></b>Anuncios con preview</a>
+    <a href="#sec-gdd"><b></b>Generación de demanda</a>
+    <span class="app-sidebar-nav-title t2">Orgánico</span>
+    <a href="#sec-org"><b></b>Resumen orgánico</a>
+    <a href="#sec-seg"><b></b>Seguidores e interacciones</a>
+    <a href="#sec-tipo"><b></b>Por tipo</a>
+    <a href="#sec-top"><b></b>Publicaciones</a>
+    <a href="#sec-posts"><b></b>Listado</a>
+  </div>
+  <div class="app-sidebar-foot">Datos al: <span id="last-upd-side">—</span></div>
+</nav>
+
+<div class="main">
+  <div class="topbar">
+    <div class="tb-row">
+      <span class="topbar-title">Tablero Huevos Oro</span>
+      <div class="f-sep"></div>
+      <div class="fg"><span class="fl">Desde</span><input type="date" id="f-desde"></div>
+      <div class="fg"><span class="fl">Hasta</span><input type="date" id="f-hasta"></div>
+      <div class="f-sep"></div>
+      <div id="quick" class="fg"></div>
+      <span class="last-upd" id="last-upd"></span>
+    </div>
+    <div class="tb-row">
+      <div class="fg"><span class="fl">Canal de pauta</span><select id="f-canal"><option value="Todos">Todos</option><option>Meta</option><option>TikTok</option><option>Google</option></select></div>
+      <div class="fg"><span class="fl">Red orgánica</span><select id="f-red"><option value="Todas">Todas</option><option>Facebook</option><option>TikTok</option></select></div>
+      <button class="btn-reset" id="btn-reset">↺ Reset</button>
+    </div>
+  </div>
+
+  <div class="content">
+    <div id="msg"></div>
+
+    <div class="sec-title" id="sec-kpi"><span></span>Resumen de pauta<span class="sec-note" id="rango-note"></span></div>
+    <div class="kpi-grid" id="kpi-grid"></div>
+
+    <div class="sec-title" id="sec-evo"><span></span>Rendimiento por fecha<span class="sec-note" id="evo-note"></span>
+      <span style="margin-left:auto;display:flex;gap:6px;flex-wrap:wrap" id="evo-ctl"></span></div>
+    <div class="card chart-card"><div class="chart-wrap"><canvas id="chart-evo"></canvas></div></div>
+
+    <div class="sec-title" id="sec-canal"><span></span>Por canal</div>
+    <div class="card tcard"><div class="tscroll"><table><thead id="canal-head"></thead><tbody id="canal-body"></tbody></table></div></div>
+
+    <div class="sec-title" id="sec-mes"><span></span>Mes a mes<span class="sec-note">año a la fecha</span></div>
+    <div class="card tcard"><div class="tscroll"><table><thead id="mes-head"></thead><tbody id="mes-body"></tbody></table></div></div>
+
+    <div class="sec-title" id="sec-arbol"><span></span>Canal · campaña · anuncio<span class="sec-note">en el rango elegido</span></div>
+    <div class="card tcard">
+      <div class="tbar">
+        <button class="tbtn" id="exp-all">Expandir todo</button>
+        <button class="tbtn" id="col-all">Contraer</button>
+        <span class="sp"></span>
+        <input type="search" id="q" placeholder="Buscar campaña o anuncio" style="width:240px">
+      </div>
+      <div class="tscroll"><table><thead id="arbol-head"></thead><tbody id="arbol-body"></tbody></table></div>
+    </div>
+
+    <div class="sec-title" id="sec-prev"><span></span>Anuncios con preview<span class="sec-note">ordenados por inversión en el rango</span>
+      <span style="margin-left:auto;display:flex;gap:6px" id="prev-ctl"></span></div>
+    <div id="ad-grid"></div>
+
+    <div class="sec-title" id="sec-gdd"><span></span>Google · Generación de demanda por pieza<span class="sec-note" id="gdd-note"></span>
+      <span style="margin-left:auto;display:flex;gap:6px;flex-wrap:wrap" id="gdd-ctl"></span></div>
+    <div class="card tcard"><div class="tscroll"><table><thead id="gdd-head"></thead><tbody id="gdd-body"></tbody></table></div>
+      <div class="foot-note">Google reparte la inversión de cada anuncio entre sus piezas, por eso las cifras de un tipo (imágenes, videos, titulares…) no se suman con las de otro. El logo y el nombre del negocio no se listan.</div></div>
+
+    <div class="sec-title" id="sec-org"><span></span>Resumen orgánico<span class="sec-note" id="rango-note2"></span></div>
+    <div class="kpi-grid" id="kpi-org"></div>
+
+    <div class="sec-title" id="sec-seg"><span></span>Seguidores e interacciones</div>
+    <div class="two-col">
+      <div class="card chart-card"><div class="sub-h">Seguidores por día</div><div class="chart-wrap"><canvas id="chart-seg"></canvas></div></div>
+      <div class="card chart-card"><div class="sub-h">Interacciones por semana</div><div class="chart-wrap"><canvas id="chart-int"></canvas></div></div>
+    </div>
+
+    <div class="sec-title" id="sec-tipo"><span></span>Por tipo de publicación</div>
+    <div class="card tcard"><div class="tscroll"><table><thead id="tipo-head"></thead><tbody id="tipo-body"></tbody></table></div></div>
+
+    <div class="sec-title" id="sec-top"><span></span>Publicaciones con más interacciones<span class="sec-note">en el rango elegido</span></div>
+    <div class="card ad-ev"><div class="ad-ev-head"><div class="ev-name">Publicaciones</div><span class="kpi-sub" id="org-count"></span><span class="car-nav"><button class="car-btn" data-car="strip-org" data-dir="-1" aria-label="Anterior">‹</button><button class="car-btn" data-car="strip-org" data-dir="1" aria-label="Siguiente">›</button></span></div><div class="ad-strip" id="strip-org"></div></div>
+
+    <div class="sec-title" id="sec-posts"><span></span>Listado de publicaciones</div>
+    <div class="card tcard"><div class="tscroll"><table><thead id="posts-head"></thead><tbody id="posts-body"></tbody></table></div>
+      <div class="tbar" style="border-top:1px solid var(--gray-100);border-bottom:0"><button class="tbtn" id="more-posts">Ver más</button></div></div>
+  </div>
+</div>
+
+<script>
+const SHEET_ID = '1TwKBmr3DpuvUZGC91UwDleQ9gW0SkrGsfFbdqdzAM-0';
+const DEV = new URLSearchParams(location.search).get('csv'); // solo para pruebas locales
+const GV = n => DEV ? `${DEV}/${n}.csv` : `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(n)}`;
+const CANALES = ['Meta','TikTok','Google'];
+const COL = {Meta:'#050505',TikTok:'#FFD400',Google:'#9A9A94',Facebook:'#050505','Facebook Reel':'#6E6E68',TikTok_o:'#FFD400'};
+const TIPOS = {Facebook:'Facebook · publicación','Facebook Reel':'Facebook · reel',TikTok:'TikTok · video'};
+const N = v => { const x = parseFloat(String(v).replace(',','.')); return isFinite(x) ? x : 0; };
+const fmt = (v,d=0) => new Intl.NumberFormat('es-CO',{maximumFractionDigits:d,minimumFractionDigits:d}).format(v);
+const cop = v => '$' + fmt(Math.round(v));
+const pct = v => fmt(v*100,1) + '%';
+const dash = '–';
+const esc = s => String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const $ = id => document.getElementById(id);
+Chart.defaults.font.family = 'Poppins'; Chart.defaults.font.size = 11;
+
+/* fechas */
+const addD = (s,n) => { const d = new Date(s+'T12:00:00Z'); d.setUTCDate(d.getUTCDate()+n); return d.toISOString().slice(0,10); };
+const diff = (a,b) => Math.round((new Date(b+'T12:00:00Z')-new Date(a+'T12:00:00Z'))/864e5);
+const monday = s => { const w = (new Date(s+'T12:00:00Z').getUTCDay()+6)%7; return addD(s,-w); };
+const MESES = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+const fCorta = s => { const [y,m,d] = s.split('-'); return `${+d} ${MESES[+m-1]}`; };
+const fLarga = s => { const [y,m,d] = s.split('-'); return `${+d} ${MESES[+m-1]} ${y}`; };
+const mesLbl = k => { const [y,m] = k.split('-'); return `${MESES[+m-1]} ${y}`; };
+
+/* estado */
+const S = { gdd:'todas', from:'', to:'', canal:'Todos', red:'Todas', met:'inv', gran:'dia', maxD:'', postsN:20, activos:true, q:'' };
+let P = [], PREV = {}, POSTS = [], SEG = [], PZ = [], POSTIMG = {}, charts = {};
+
+const cargar = nombre => new Promise((ok,ko) => Papa.parse(GV(nombre),{download:true,header:true,skipEmptyLines:true,
+  complete:r => ok(r.data), error:e => ko(new Error(nombre+': '+(e.message||e)))}));
+
+Promise.all([...['META_DIA','TIKTOK_DIA','GOOGLE_DIA','PREVIEWS','ORGANICO_POSTS','ORGANICO_DIA','CONTROL'].map(cargar), cargar('GOOGLE_PIEZAS').catch(() => [])]).then(([m,t,g,pv,po,sg,ct,gp]) => {
+  if(!m.length && !t.length && !g.length) throw new Error('La hoja no devolvió datos. Revisa que esté compartida con "Cualquier persona con el enlace puede ver".');
+  m.forEach(r => P.push({d:r.fecha,canal:'Meta',camp:r.campana,id:r.anuncio_id,ad:r.anuncio,
+    inv:N(r.inversion),imp:N(r.impresiones),clic:N(r.clics_enlace),rep:N(r.reproducciones),int:N(r.interacciones)}));
+  t.forEach(r => P.push({d:r.fecha,canal:'TikTok',camp:r.campana,id:r.anuncio_id,ad:r.anuncio,
+    inv:N(r.inversion),imp:N(r.impresiones),clic:N(r.clics),rep:N(r.reproducciones),int:N(r.likes)+N(r.comentarios)+N(r.compartidos)+N(r.seguidores)}));
+  g.forEach(r => P.push({d:r.fecha,canal:'Google',camp:r.campana,id:r.anuncio_id,ad:r.anuncio||('Anuncio '+r.anuncio_id),
+    inv:N(r.inversion),imp:N(r.impresiones),clic:N(r.clics),rep:N(r.reproducciones),int:0}));
+  P = P.filter(r => /^\d{4}-\d{2}-\d{2}$/.test(r.d));
+  pv.forEach(r => PREV[r.canal+'|'+r.anuncio_id] = r);
+  po.forEach(r => POSTS.push({red:r.red,d:r.fecha,id:r.id,url:r.enlace,img:r.imagen,txt:r.texto,
+    impr:N(r.impresiones),rea:N(r.reacciones_o_likes),com:N(r.comentarios),sh:N(r.compartidos),
+    rep:N(r.reproducciones),eng:r.engagement===''?null:N(r.engagement)}));
+  POSTS.forEach(p => p.int = p.rea+p.com+p.sh);
+  sg.forEach(r => SEG.push({d:r.fecha,red:r.red,n:N(r.seguidores)}));
+  POSTS.forEach(p => { if(p.red==='TikTok' && p.img) POSTIMG[p.id] = p.img; }); // portada de la publicación, para los Spark Ads
+  gp.filter(r => /^\d{4}-\d{2}-\d{2}$/.test(r.fecha)).forEach(r => PZ.push({d:r.fecha,campo:r.campo,camp:r.campana,adid:r.anuncio_id,ad:r.anuncio||('Anuncio '+r.anuncio_id),
+    id:r.pieza_id,nom:r.pieza,tipo:r.tipo,img:r.imagen,yt:r.youtube,txt:r.texto,inv:N(r.inversion),imp:N(r.impresiones),clic:N(r.clics),rep:N(r.reproducciones)}));
+  S.maxD = P.reduce((a,r)=>r.d>a?r.d:a,'0000');
+  const upd = (ct.find(r=>r.Dato==='Última actualización')||{}).Valor || '';
+  $('last-upd').textContent = upd ? 'Actualizado: ' + upd : ''; $('last-upd-side').textContent = upd || '—';
+  const malos = ct.filter(r=>r.Estado==='ERROR').map(r=>r.Fuente);
+  if(malos.length) $('msg').innerHTML = `<div class="err">Sin datos recientes de: ${esc(malos.join(', '))}. Revisa la pestaña CONTROL de la fuente.</div>`;
+  iniciar(); $('loading').style.display = 'none';
+}).catch(e => { $('ld-msg').textContent = e.message; document.querySelector('#loading .spinner').style.display = 'none'; });
+
+/* filtros */
+function presets(){
+  const mx = S.maxD, mes0 = mx.slice(0,7)+'-01', pm1 = addD(mes0,-1), pm0 = pm1.slice(0,7)+'-01', lun = monday(mx);
+  return [['Esta semana',lun,mx],['Semana pasada',addD(lun,-7),addD(lun,-1)],['Este mes',mes0,mx],['Mes anterior',pm0,pm1],
+    ['Últimos 30 días',addD(mx,-29),mx],['Año a la fecha',mx.slice(0,4)+'-01-01',mx]];
+}
+function iniciar(){
+  const pr = presets();
+  $('quick').innerHTML = pr.map((p,i)=>`<button class="qbtn" data-i="${i}">${p[0]}</button>`).join('');
+  $('quick').onclick = e => { const b = e.target.closest('[data-i]'); if(b){ S.from = pr[+b.dataset.i][1]; S.to = pr[+b.dataset.i][2]; sync(); } };
+  $('f-desde').onchange = () => { S.from = $('f-desde').value || S.from; sync(); };
+  $('f-hasta').onchange = () => { S.to = $('f-hasta').value || S.to; sync(); };
+  $('f-canal').onchange = () => { S.canal = $('f-canal').value; sync(); };
+  $('f-red').onchange = () => { S.red = $('f-red').value; sync(); };
+  $('btn-reset').onclick = () => { S.from = pr[2][1]; S.to = pr[2][2]; S.canal = 'Todos'; S.red = 'Todas'; S.met = 'inv'; S.gran = 'dia'; S.gdd = 'todas'; S.activos = true; S.q = ''; $('q').value = ''; sync(); };
+  $('evo-ctl').innerHTML = [['inv','Inversión'],['imp','Impresiones'],['clic','Clics'],['rep','Reproducciones'],['int','Interacciones']].map(m=>`<button class="qbtn" data-met="${m[0]}">${m[1]}</button>`).join('')
+    + '<span class="f-sep"></span>' + [['dia','Día'],['sem','Semana'],['mes','Mes']].map(m=>`<button class="qbtn" data-gran="${m[0]}">${m[1]}</button>`).join('');
+  $('evo-ctl').onclick = e => { const b = e.target.closest('button'); if(!b) return; if(b.dataset.met) S.met = b.dataset.met; if(b.dataset.gran) S.gran = b.dataset.gran; sync(); };
+  $('prev-ctl').innerHTML = '<button class="qbtn" data-a="1">En pauta ahora</button><button class="qbtn" data-a="0">Todos los del rango</button>';
+  $('prev-ctl').onclick = e => { const b = e.target.closest('[data-a]'); if(b){ S.activos = b.dataset.a==='1'; sync(); } };
+  $('gdd-ctl').innerHTML = [['todas','Todas'],['img','Imágenes'],['vid','Videos'],['txt','Titulares y descripciones']].map(m=>`<button class="qbtn" data-g="${m[0]}">${m[1]}</button>`).join('');
+  $('gdd-ctl').onclick = e => { const b = e.target.closest('[data-g]'); if(b){ S.gdd = b.dataset.g; sync(); } };
+  document.addEventListener('click', e => { const f = e.target.closest('.fac'); if(!f) return;
+    f.outerHTML = `<iframe src="${f.dataset.src}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture; web-share" allowfullscreen title="Video de TikTok"></iframe>`; });
+  $('arbol-body').onclick = e => { const tr = e.target.closest('tr[data-k]'); if(tr) toggle(tr.dataset.k); };
+  $('exp-all').onclick = () => expandAll(true); $('col-all').onclick = () => expandAll(false);
+  $('q').oninput = () => { S.q = $('q').value.toLowerCase(); pintarArbol(); };
+  document.addEventListener('click', e => { const b = e.target.closest('[data-car]'); if(!b) return; const st = $(b.dataset.car); st.scrollBy({left:+b.dataset.dir*(st.clientWidth*0.85),behavior:'smooth'}); });
+  $('more-posts').onclick = () => { S.postsN += 30; pintarListado(); };
+  [S.from,S.to] = [pr[2][1],pr[2][2]];
+  const secs = [...document.querySelectorAll('.sec-title[id]')], links = [...document.querySelectorAll('.app-sidebar-nav a')];
+  const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) links.forEach(a => a.classList.toggle('active', a.getAttribute('href')==='#'+e.target.id)); }),{rootMargin:'-120px 0px -70% 0px'});
+  secs.forEach(s => io.observe(s));
+  sync();
+}
+function sync(){
+  if(S.from > S.to) [S.from,S.to] = [S.to,S.from];
+  $('f-desde').value = S.from; $('f-hasta').value = S.to; $('f-canal').value = S.canal; $('f-red').value = S.red;
+  const pr = presets();
+  document.querySelectorAll('#quick .qbtn').forEach((b,i)=>b.classList.toggle('on', pr[i][1]===S.from && pr[i][2]===S.to));
+  document.querySelectorAll('#evo-ctl [data-met]').forEach(b=>b.classList.toggle('on',b.dataset.met===S.met));
+  document.querySelectorAll('#evo-ctl [data-gran]').forEach(b=>b.classList.toggle('on',b.dataset.gran===S.gran));
+  document.querySelectorAll('#gdd-ctl .qbtn').forEach(b=>b.classList.toggle('on',b.dataset.g===S.gdd));
+  document.querySelectorAll('#prev-ctl .qbtn').forEach(b=>b.classList.toggle('on',(b.dataset.a==='1')===S.activos));
+  const rg = `${fLarga(S.from)} al ${fLarga(S.to)} · ${diff(S.from,S.to)+1} días`;
+  $('rango-note').textContent = rg; $('rango-note2').textContent = rg;
+  pintarPauta(); pintarOrg();
+}
+
+/* pauta: agregación */
+const enRango = (rows,a,b) => rows.filter(r => r.d>=a && r.d<=b);
+const porCanal = rows => S.canal==='Todos' ? rows : rows.filter(r=>r.canal===S.canal);
+const suma = rows => rows.reduce((a,r)=>{a.inv+=r.inv;a.imp+=r.imp;a.clic+=r.clic;a.rep+=r.rep;a.int+=r.int;return a;},{inv:0,imp:0,clic:0,rep:0,int:0});
+const cpm = s => s.imp>0 ? s.inv*1000/s.imp : null;
+// costo por clic / reproducción / interacción: solo con los canales que reportan esa métrica (mínimo 30)
+function costoDe(rows,campo){
+  let inv = 0, v = 0;
+  CANALES.forEach(c => { const rr = rows.filter(r=>r.canal===c); const t = rr.reduce((a,r)=>a+r[campo],0);
+    if(t >= 30){ inv += rr.reduce((a,r)=>a+r.inv,0); v += t; } });
+  return v>0 ? inv/v : null;
+}
+const mon = v => v===null ? dash : (v<100 ? '$'+fmt(v,1) : cop(v));
+const cnt = v => v ? fmt(v) : dash;
+function delta(cur,prev,costo,neutro){
+  if(prev===null || prev===0 || cur===null) return '';
+  const c = (cur-prev)/prev, up = c>=0;
+  const cls = neutro ? 't-mute' : (costo ? (up?'t-neg':'t-pos') : (up?'t-pos':'t-neg'));
+  return `<span class="${cls}">${up?'▲':'▼'} ${fmt(Math.abs(c)*100,0)}%</span> vs periodo anterior`;
+}
+const kpi = (l,v,sub) => `<div class="card kpi-card"><div class="kpi-label">${l}</div><div class="kpi-value">${v}</div><div class="kpi-sub">${sub||'&nbsp;'}</div></div>`;
+const kill = k => { if(charts[k]){ charts[k].destroy(); delete charts[k]; } };
+const grp = (rows,kf) => { const m = new Map(); rows.forEach(r=>{ const k = kf(r); if(!m.has(k)) m.set(k,[]); m.get(k).push(r); }); return m; };
+const ord = m => [...m.entries()].sort((a,b)=>suma(b[1]).inv-suma(a[1]).inv);
+
+function pintarPauta(){
+  const len = diff(S.from,S.to)+1, pf = addD(S.from,-len), pt = addD(S.from,-1);
+  const base = porCanal(P), cur = enRango(base,S.from,S.to), ant = enRango(base,pf,pt), a = suma(cur), b = suma(ant);
+  $('kpi-grid').innerHTML = [
+    kpi('Inversión',cop(a.inv),delta(a.inv,b.inv,true,true)),
+    kpi('Impresiones',fmt(a.imp),delta(a.imp,b.imp)),
+    kpi('CPM',mon(cpm(a)),delta(cpm(a),cpm(b),true)),
+    kpi('Clics',fmt(a.clic),delta(a.clic,b.clic)),
+    kpi('Costo por clic',mon(costoDe(cur,'clic')),delta(costoDe(cur,'clic'),costoDe(ant,'clic'),true)),
+    kpi('Reproducciones',fmt(a.rep),delta(a.rep,b.rep)),
+    kpi('Costo por reproducción',mon(costoDe(cur,'rep')),delta(costoDe(cur,'rep'),costoDe(ant,'rep'),true)),
+    kpi('Interacciones',fmt(a.int),delta(a.int,b.int)),
+    kpi('Costo por interacción',mon(costoDe(cur,'int')),delta(costoDe(cur,'int'),costoDe(ant,'int'),true)),
+  ].join('');
+  evolucion(cur); tablaCanal(enRango(P,S.from,S.to)); tablaMes(); pintarArbol(); pintarPrev(); pintarPiezas();
+}
+
+function evolucion(rows){
+  const key = r => S.gran==='dia' ? r.d : S.gran==='sem' ? monday(r.d) : r.d.slice(0,7);
+  const lbl = k => S.gran==='mes' ? mesLbl(k) : fCorta(k);
+  const keys = [...new Set(rows.map(key))].sort(), canales = S.canal==='Todos' ? CANALES : [S.canal], esMon = S.met==='inv';
+  $('evo-note').textContent = {inv:'inversión',imp:'impresiones',clic:'clics',rep:'reproducciones',int:'interacciones'}[S.met] + ' por ' + {dia:'día',sem:'semana',mes:'mes'}[S.gran];
+  kill('evo');
+  charts.evo = new Chart($('chart-evo'),{type:'bar',data:{labels:keys.map(lbl),datasets:canales.map(c=>({label:c,backgroundColor:COL[c],borderRadius:2,
+    data:keys.map(k=>rows.filter(r=>r.canal===c && key(r)===k).reduce((s,r)=>s+r[S.met],0))}))},options:{
+    responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},layout:{padding:{left:6}},
+    plugins:{legend:{position:'bottom',labels:{boxWidth:10}},tooltip:{callbacks:{label:c=>`${c.dataset.label}: ${esMon?cop(c.raw):fmt(c.raw)}`,
+      footer:i=>'Total: '+(esMon?cop(i.reduce((s,x)=>s+x.raw,0)):fmt(i.reduce((s,x)=>s+x.raw,0)))}}},
+    scales:{x:{stacked:true,grid:{display:false},ticks:{maxTicksLimit:16}},y:{stacked:true,ticks:{callback:v=>esMon?'$'+fmt(v/1000)+' mil':fmt(v)}}}}});
+}
+
+const th = (t,cls='r') => `<th class="${cls}">${t}</th>`;
+function tablaCanal(rows){
+  const tot = suma(rows);
+  const fila = (n,rr,color,total) => { const s = suma(rr);
+    return `<tr${total?' class="tr-total"':''}><td>${color?`<span class="dot" style="background:${color}"></span>`:''}${n}</td><td class="r">${cop(s.inv)}</td><td class="r">${tot.inv?pct(s.inv/tot.inv):dash}</td><td class="r">${fmt(s.imp)}</td><td class="r">${mon(cpm(s))}</td><td class="r">${fmt(s.clic)}</td><td class="r">${mon(costoDe(rr,'clic'))}</td><td class="r">${cnt(s.rep)}</td><td class="r">${mon(costoDe(rr,'rep'))}</td><td class="r">${cnt(s.int)}</td><td class="r">${mon(costoDe(rr,'int'))}</td></tr>`; };
+  $('canal-head').innerHTML = `<tr>${th('Canal','')}${['Inversión','%','Impresiones','CPM','Clics','CPC','Reproducciones','Costo/repr.','Interacciones','Costo/inter.'].map(x=>th(x)).join('')}</tr>`;
+  $('canal-body').innerHTML = CANALES.map(c=>fila(c,rows.filter(r=>r.canal===c),COL[c],false)).join('') + fila('Total',rows,'',true);
+}
+
+function tablaMes(){
+  const rows = porCanal(P), y = S.maxD.slice(0,4), del = rows.filter(r=>r.d.startsWith(y));
+  const meses = [...new Set(del.map(r=>r.d.slice(0,7)))].sort();
+  const fila = (n,rr,total) => { const s = suma(rr);
+    return `<tr${total?' class="tr-total"':''}><td>${n}</td>${CANALES.map(c=>`<td class="r">${cop(rr.filter(r=>r.canal===c).reduce((x,r)=>x+r.inv,0))}</td>`).join('')}<td class="r"><b>${cop(s.inv)}</b></td><td class="r">${fmt(s.imp)}</td><td class="r">${mon(cpm(s))}</td><td class="r">${fmt(s.clic)}</td><td class="r">${cnt(s.rep)}</td><td class="r">${cnt(s.int)}</td></tr>`; };
+  $('mes-head').innerHTML = `<tr>${th('Mes','')}${CANALES.map(c=>th(c)).join('')}${['Total inversión','Impresiones','CPM','Clics','Reproducciones','Interacciones'].map(x=>th(x)).join('')}</tr>`;
+  $('mes-body').innerHTML = meses.map(m=>fila(mesLbl(m),del.filter(r=>r.d.startsWith(m)),false)).join('') + fila('Total '+y,del,true);
+}
+
+/* árbol canal > campaña > anuncio */
+function pintarArbol(){
+  const rows = enRango(porCanal(P),S.from,S.to).filter(r => !S.q || (r.camp+' '+r.ad).toLowerCase().includes(S.q));
+  $('arbol-head').innerHTML = `<tr>${th('Nombre','')}${['Inversión','Impresiones','CPM','Clics','Reproducciones','Interacciones'].map(x=>th(x)).join('')}</tr>`;
+  const cel = s => `<td class="r">${cop(s.inv)}</td><td class="r">${fmt(s.imp)}</td><td class="r">${mon(cpm(s))}</td><td class="r">${fmt(s.clic)}</td><td class="r">${cnt(s.rep)}</td><td class="r">${cnt(s.int)}</td>`;
+  let h = '';
+  ord(grp(rows,r=>r.canal)).forEach(([c,rc],i) => {
+    h += `<tr class="lv1" data-k="c${i}"><td><span class="tog">▶</span><span class="dot" style="background:${COL[c]}"></span>${c}</td>${cel(suma(rc))}</tr>`;
+    ord(grp(rc,r=>r.camp)).forEach(([cp,rp],j) => {
+      h += `<tr class="lv2 hidden" data-k="c${i}/p${j}" data-p="c${i}"><td><span class="tog">▶</span>${esc(cp)}</td>${cel(suma(rp))}</tr>`;
+      ord(grp(rp,r=>r.id)).forEach(([id,ra]) => {
+        const pv = PREV[c+'|'+id] || {}, im = pv.imagen ? `<img class="thumb" loading="lazy" src="${esc(pv.imagen)}" onerror="this.style.visibility='hidden'">` : '';
+        h += `<tr class="lv3 hidden" data-p="c${i}/p${j}"><td class="nm">${im}${esc(ra[0].ad)}</td>${cel(suma(ra))}</tr>`;
+      });
+    });
+  });
+  $('arbol-body').innerHTML = h || '<tr><td colspan="7" class="t-mute" style="padding:18px">Sin datos en este rango.</td></tr>';
+  if(S.q) expandAll(true);
+}
+function toggle(k){
+  const tr = document.querySelector(`#arbol-body tr[data-k="${k}"]`), t = tr.querySelector('.tog'), abre = !t.classList.contains('open');
+  t.classList.toggle('open',abre);
+  document.querySelectorAll('#arbol-body tr').forEach(x => {
+    const p = x.dataset.p; if(!p || (p!==k && !p.startsWith(k+'/'))) return;
+    if(abre){ if(p===k) x.classList.remove('hidden'); }
+    else { x.classList.add('hidden'); const tg = x.querySelector('.tog'); if(tg) tg.classList.remove('open'); }
+  });
+}
+function expandAll(abre){
+  document.querySelectorAll('#arbol-body tr.lv1,#arbol-body tr.lv2').forEach(x => { const t = x.querySelector('.tog'); if(t) t.classList.toggle('open',abre); });
+  document.querySelectorAll('#arbol-body tr.lv2').forEach(x => x.classList.toggle('hidden',!abre));
+  document.querySelectorAll('#arbol-body tr.lv3').forEach(x => x.classList.toggle('hidden',!abre));
+}
+
+/* previews con la estructura de Altavista: iframe de Meta (el video se mueve), video de TikTok, YouTube de Google */
+function fachadaTikTok(id,poster){
+  const src = `https://www.tiktok.com/player/v1/${id}?embed_from=oembed&music_info=1&description=1&autoplay=1&muted=1`;
+  return `<div class="fac" data-src="${src}" role="button" aria-label="Reproducir video">${poster?`<img loading="lazy" src="${esc(poster)}" alt="" onerror="this.remove()">`:''}<span class="fac-play">▶</span><span class="fac-lbl">Reproducir</span></div>`;
+}
+function mediaAnuncio(canal,pv){
+  const img = pv.imagen ? `<img loading="lazy" src="${esc(pv.imagen)}" alt="">` : '<span class="nop">Sin vista previa para este anuncio.</span>';
+  if(canal==='Meta' && pv.iframe) return `<iframe src="${esc(pv.iframe)}" loading="lazy" scrolling="no" title="Preview del anuncio"></iframe>`;
+  if(canal==='TikTok' && !pv.video_mp4){
+    // Spark Ads: el anuncio es una publicación de @huevosoro, sin archivo en la biblioteca; se incrusta el reproductor público
+    const m = String(pv.publicacion_o_destino||'').match(/video\/(\d+)/);
+    if(m) return fachadaTikTok(m[1], pv.imagen || POSTIMG[m[1]]);
+  }
+  if(canal==='TikTok' && pv.video_mp4) return `<video src="${esc(pv.video_mp4)}" ${pv.imagen?`poster="${esc(pv.imagen)}"`:''} controls muted loop playsinline preload="none" onerror="this.outerHTML=this.poster?'<img src=&quot;'+this.poster+'&quot;>':'<span class=nop>Sin vista previa</span>'"></video>`;
+  if(canal==='Google' && pv.youtube) return `<iframe src="https://www.youtube.com/embed/${esc(pv.youtube)}?rel=0&modestbranding=1" loading="lazy" allowfullscreen title="Video del anuncio"></iframe>`;
+  return img;
+}
+function tarjetaAd(x,subInv,activo){
+  const r0 = x.rr[0], pv = PREV[x.k] || {}, s = x.s, lnk = pv.iframe || pv.preview || pv.publicacion_o_destino;
+  const gg = r0.canal==='Google' && pv.youtube;
+  const nums = r0.canal==='Google' ? [['Inversión',cop(s.inv)],['Reproducciones',fmt(s.rep)],['Clics',fmt(s.clic)]]
+    : [['Inversión',cop(s.inv)],[s.rep?'Reproducciones':'Clics',fmt(s.rep||s.clic)],['Interacciones',cnt(s.int)]];
+  return `<div class="ad-card"><div class="ad-prev${gg?' gg':''}">${mediaAnuncio(r0.canal,pv)}</div>
+    <div class="ad-body"><div class="ad-name"><span>${esc(r0.ad)}</span>${lnk?`<a href="${esc(lnk)}" target="_blank" rel="noopener">Abrir ↗</a>`:''}</div>
+    <div class="t-mute" style="font-size:11px;margin-top:-4px">${esc(r0.camp)}</div>
+    <div><span class="tag ${activo?'tag-act':'tag-pau'}">${activo?'Activo':'Ya no corre'}</span> <span class="t-mute" style="font-size:11px">${subInv?pct(s.inv/subInv)+' de la inversión de la campaña':'sin inversión en el rango'}</span></div>
+    <div class="ad-share"><div style="width:${subInv?s.inv/subInv*100:0}%"></div></div>
+    <div class="ad-nums">${nums.map(n=>`<div><div class="nm-label">${n[0]}</div><div class="nm-value">${n[1]}</div></div>`).join('')}</div></div></div>`;
+}
+function pintarPrev(){
+  const rows = enRango(porCanal(P),S.from,S.to), recientes = new Set(P.filter(r=>r.d>=addD(S.maxD,-2)&&r.inv>0).map(r=>r.canal+'|'+r.id));
+  let lista = [...grp(rows,r=>r.canal+'|'+r.id).entries()].map(([k,rr])=>({k,rr,s:suma(rr)})).filter(x=>x.s.inv>0);
+  if(S.activos) lista = lista.filter(x => recientes.has(x.k));
+  // un carrusel por canal con todos sus anuncios, agrupados por campaña (la de más inversión primero)
+  const orden = CANALES.filter(c=>lista.some(x=>x.rr[0].canal===c));
+  $('ad-grid').innerHTML = orden.length ? orden.map(c => {
+    const xs = lista.filter(x=>x.rr[0].canal===c), invCamp = {};
+    xs.forEach(x => invCamp[x.rr[0].camp] = (invCamp[x.rr[0].camp]||0) + x.s.inv);
+    xs.sort((x,y) => invCamp[y.rr[0].camp]-invCamp[x.rr[0].camp] || y.s.inv-x.s.inv);
+    const act = xs.filter(x=>recientes.has(x.k)).length;
+    return `<div class="card ad-ev"><div class="ad-ev-head"><div class="ev-name"><span class="dot" style="background:${COL[c]}"></span>${c}</div>
+      <span class="kpi-sub">${xs.length} ${xs.length===1?'anuncio':'anuncios'}${S.activos?'':` · ${act} en pauta ahora`} · ${cop(xs.reduce((t,x)=>t+x.s.inv,0))} en el rango</span>
+      <span class="car-nav"><button class="car-btn" data-car="strip-${c}" data-dir="-1" aria-label="Anterior">‹</button><button class="car-btn" data-car="strip-${c}" data-dir="1" aria-label="Siguiente">›</button></span></div>
+      <div class="ad-strip" id="strip-${c}">${xs.map(x=>tarjetaAd(x,invCamp[x.rr[0].camp],recientes.has(x.k))).join('')}</div></div>`;
+  }).join('') : '<div class="card kpi-card t-mute">No hay anuncios con inversión en este rango.</div>';
+}
+
+/* Google · Generación de demanda por pieza */
+const CAMPO = {SQUARE_MARKETING_IMAGE:['Imagen cuadrada','img'],PORTRAIT_MARKETING_IMAGE:['Imagen vertical','img'],MARKETING_IMAGE:['Imagen horizontal','img'],
+  YOUTUBE_VIDEO:['Video','vid'],HEADLINE:['Titular','txt'],LONG_HEADLINE:['Titular largo','txt'],DESCRIPTION:['Descripción','txt']};
+function pintarPiezas(){
+  const rows = enRango(PZ,S.from,S.to).filter(r => CAMPO[r.campo] && (S.gdd==='todas' || CAMPO[r.campo][1]===S.gdd));
+  $('gdd-head').innerHTML = `<tr>${th('Pieza','')}${th('Tipo','')}${th('Anuncio','')}${['Inversión','Impresiones','Clics','CTR','CPC','Reproducciones'].map(x=>th(x)).join('')}</tr>`;
+  if(!PZ.length){ $('gdd-note').textContent = ''; $('gdd-body').innerHTML = '<tr><td colspan="9" class="t-mute" style="padding:18px">Falta la pestaña GOOGLE_PIEZAS: ejecuta «Solo Google» en el script de la fuente.</td></tr>'; return; }
+  const por = [...grp(rows,r=>r.adid+'|'+r.campo+'|'+r.id).entries()].map(([k,rr])=>({rr,s:suma(rr)})).sort((a,b)=>b.s.inv-a.s.inv);
+  $('gdd-note').textContent = `${por.length} piezas · ${fLarga(S.from)} al ${fLarga(S.to)}`;
+  $('gdd-body').innerHTML = por.map(x => {
+    const r = x.rr[0], s = x.s, c = CAMPO[r.campo];
+    const th2 = r.img ? `<img class="pz-th" loading="lazy" src="${esc(r.img)}" alt="" onerror="this.style.visibility='hidden'">`
+      : r.yt ? `<a href="https://www.youtube.com/watch?v=${esc(r.yt)}" target="_blank" rel="noopener"><img class="pz-th" loading="lazy" src="https://img.youtube.com/vi/${esc(r.yt)}/mqdefault.jpg" alt="" onerror="this.style.visibility='hidden'"></a>` : '';
+    const nombre = c[1]==='txt' ? esc(r.txt || r.nom) : esc(r.nom || (r.yt ? 'youtu.be/'+r.yt : 'Pieza '+r.id));
+    return `<tr><td><div class="pz-cell">${th2}<span class="pz-txt">${nombre}</span></div></td><td>${c[0]}</td><td class="nm">${esc(r.ad)}</td><td class="r">${cop(s.inv)}</td><td class="r">${fmt(s.imp)}</td><td class="r">${fmt(s.clic)}</td><td class="r">${s.imp?fmt(s.clic/s.imp*100,2)+'%':dash}</td><td class="r">${s.clic?mon(s.inv/s.clic):dash}</td><td class="r">${cnt(s.rep)}</td></tr>`;
+  }).join('') || '<tr><td colspan="9" class="t-mute" style="padding:18px">Sin piezas en este rango.</td></tr>';
+}
+
+/* orgánico */
+const porRed = rows => S.red==='Todas' ? rows : rows.filter(r => S.red==='Facebook' ? r.red.startsWith('Facebook') : r.red==='TikTok');
+const sumaO = rows => rows.reduce((a,p)=>{a.n++;a.impr+=p.impr;a.rep+=p.rep;a.int+=p.int;if(p.eng!==null){a.e+=p.eng;a.ne++;}return a;},{n:0,impr:0,rep:0,int:0,e:0,ne:0});
+function segDe(red,a,b){
+  const r = SEG.filter(x=>x.red===red).sort((x,y)=>x.d<y.d?-1:1);
+  const fin = [...r].reverse().find(x=>x.d<=b), ini = [...r].reverse().find(x=>x.d<a) || r[0];
+  return fin ? {fin:fin.n, neto: ini ? fin.n-ini.n : 0} : null;
+}
+function pintarOrg(){
+  const len = diff(S.from,S.to)+1, pf = addD(S.from,-len), pt = addD(S.from,-1);
+  const base = porRed(POSTS), cur = enRango(base,S.from,S.to), ant = enRango(base,pf,pt), a = sumaO(cur), b = sumaO(ant);
+  const K = [kpi('Publicaciones',fmt(a.n),delta(a.n,b.n)), kpi('Reproducciones',fmt(a.rep),delta(a.rep,b.rep)),
+    kpi('Impresiones',fmt(a.impr),delta(a.impr,b.impr)), kpi('Interacciones',fmt(a.int),delta(a.int,b.int)),
+    kpi('Interacciones por publicación',a.n?fmt(a.int/a.n,1):dash,delta(a.n?a.int/a.n:null,b.n?b.int/b.n:null)),
+    kpi('Engagement promedio',a.ne?fmt(a.e/a.ne,1)+'%':dash,delta(a.ne?a.e/a.ne:null,b.ne?b.e/b.ne:null))];
+  ['Facebook','TikTok'].forEach(r => { if(S.red==='Todas'||S.red===r){ const s = segDe(r,S.from,S.to);
+    if(s) K.push(kpi('Seguidores '+r,fmt(s.fin),`<span class="${s.neto>0?'t-pos':s.neto<0?'t-neg':'t-mute'}">${s.neto>0?'+':''}${fmt(s.neto)}</span> en el rango`)); }});
+  $('kpi-org').innerHTML = K.join('');
+
+  const dias = [...new Set(SEG.filter(x=>x.d>=S.from&&x.d<=S.to).map(x=>x.d))].sort(), reds = S.red==='Todas' ? ['Facebook','TikTok'] : [S.red];
+  kill('seg');
+  charts.seg = new Chart($('chart-seg'),{type:'line',data:{labels:dias.map(fCorta),datasets:reds.map((r,i)=>({label:r,borderColor:COL[r==='TikTok'?'TikTok_o':r]==='#FFD400'?'#D9B000':'#050505',backgroundColor:'transparent',borderWidth:2,pointRadius:0,tension:.25,yAxisID:'y'+i,
+    data:dias.map(d=>{const x=SEG.find(s=>s.red===r&&s.d===d);return x?x.n:null;})}))},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
+    plugins:{legend:{position:'bottom',labels:{boxWidth:10}}},
+    scales:{x:{grid:{display:false},ticks:{maxTicksLimit:12}},y0:{position:'left',ticks:{callback:v=>fmt(v)}},y1:{position:'right',display:reds.length>1,grid:{display:false},ticks:{callback:v=>fmt(v)}}}}});
+  const sem = [...new Set(cur.map(p=>monday(p.d)))].sort(), tipos = ['Facebook','Facebook Reel','TikTok'].filter(t=>cur.some(p=>p.red===t));
+  kill('int');
+  charts.int = new Chart($('chart-int'),{type:'bar',data:{labels:sem.map(fCorta),datasets:tipos.map(t=>({label:TIPOS[t],backgroundColor:COL[t==='TikTok'?'TikTok_o':t],borderRadius:2,
+    data:sem.map(s=>cur.filter(p=>p.red===t&&monday(p.d)===s).reduce((x,p)=>x+p.int,0))}))},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
+    plugins:{legend:{position:'bottom',labels:{boxWidth:10}}},scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true}}}});
+
+  const filaT = (n,s,total) => `<tr${total?' class="tr-total"':''}><td>${n}</td><td class="r">${fmt(s.n)}</td><td class="r">${cnt(s.impr)}</td><td class="r">${cnt(s.rep)}</td><td class="r">${fmt(s.int)}</td><td class="r">${s.n?fmt(s.int/s.n,1):dash}</td><td class="r">${s.ne?fmt(s.e/s.ne,1)+'%':dash}</td></tr>`;
+  $('tipo-head').innerHTML = `<tr>${th('Tipo','')}${['Publicaciones','Impresiones','Reproducciones','Interacciones','Inter./publicación','Engagement prom.'].map(x=>th(x)).join('')}</tr>`;
+  $('tipo-body').innerHTML = ['Facebook','Facebook Reel','TikTok'].filter(t=>base.some(p=>p.red===t)).map(t=>filaT(TIPOS[t],sumaO(cur.filter(p=>p.red===t)),false)).join('') + filaT('Total',a,true);
+
+  pintarOrgCards(cur); pintarListado();
+}
+function embedOrg(p){
+  const poster = p.img ? `<img loading="lazy" src="${esc(p.img)}" alt="" onerror="this.outerHTML='<span class=nop>Sin vista previa</span>'">` : '<span class="nop">Sin vista previa</span>';
+  if(p.red==='TikTok' && p.id) return fachadaTikTok(p.id, p.img);
+  if(p.red==='Facebook Reel' && p.url) return `<iframe src="https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(p.url)}&show_text=false&width=320" loading="lazy" allowfullscreen scrolling="no" title="Reel de Facebook"></iframe>`;
+  if(p.red==='Facebook' && p.url) return `<iframe src="https://www.facebook.com/plugins/post.php?href=${encodeURIComponent(p.url)}&show_text=true&width=320" loading="lazy" scrolling="no" title="Publicación de Facebook"></iframe>`;
+  return poster;
+}
+function pintarOrgCards(cur){
+  const top = [...cur].sort((x,y)=>y.int-x.int);
+  $('org-count').textContent = `${top.length} ${top.length===1?'publicación':'publicaciones'} · de más a menos interacciones`;
+  $('strip-org').innerHTML = top.length ? top.map(p => `<div class="ad-card"><div class="ad-prev">${embedOrg(p)}</div><div class="ad-body">
+    <div class="ad-name"><span><span class="tag tag-org">${TIPOS[p.red]||p.red}</span> ${fCorta(p.d)}</span>${p.url?`<a href="${esc(p.url)}" target="_blank" rel="noopener">Abrir ↗</a>`:''}</div>
+    <div class="ad-txt">${esc((p.txt||'').slice(0,140))}${(p.txt||'').length>140?'…':''}</div>
+    <div class="ad-nums"><div><div class="nm-label">Interacciones</div><div class="nm-value">${fmt(p.int)}</div></div>
+    <div><div class="nm-label">Reproducciones</div><div class="nm-value">${cnt(p.rep)}</div></div>
+    <div><div class="nm-label">Impresiones</div><div class="nm-value">${cnt(p.impr)}</div></div></div></div></div>`).join('') : '<div class="kpi-sub" style="padding:16px">Sin publicaciones en este rango.</div>';
+}
+function pintarOrgOnly(){ pintarOrg(); }
+function pintarListado(){
+  const lista = enRango(porRed(POSTS),S.from,S.to).sort((x,y)=>x.d<y.d?1:-1);
+  $('posts-head').innerHTML = `<tr>${th('Fecha','')}${th('Tipo','')}${th('Texto','')}${['Reacciones','Comentarios','Compartidos','Reproducciones','Impresiones'].map(x=>th(x)).join('')}</tr>`;
+  $('posts-body').innerHTML = lista.slice(0,S.postsN).map(p=>`<tr><td>${fCorta(p.d)}</td><td>${TIPOS[p.red]||p.red}</td><td class="nm">${p.url?`<a href="${esc(p.url)}" target="_blank" rel="noopener" style="color:inherit">${esc((p.txt||'').slice(0,90)||'(sin texto)')}</a>`:esc((p.txt||'').slice(0,90))}</td><td class="r">${fmt(p.rea)}</td><td class="r">${fmt(p.com)}</td><td class="r">${fmt(p.sh)}</td><td class="r">${cnt(p.rep)}</td><td class="r">${cnt(p.impr)}</td></tr>`).join('') || '<tr><td colspan="8" class="t-mute" style="padding:18px">Sin publicaciones en este rango.</td></tr>';
+  $('more-posts').style.display = lista.length > S.postsN ? 'inline-block' : 'none';
+}
+</script>
+</body>
+</html>
