@@ -521,10 +521,7 @@ function fachadaTikTok(id,poster){
   return `<div class="fac" data-src="${src}" role="button" aria-label="Reproducir video">${poster?`<img loading="lazy" src="${esc(poster)}" alt="" onerror="this.remove()">`:''}<span class="fac-play">▶</span><span class="fac-lbl">Reproducir</span></div>`;
 }
 function mediaAnuncio(canal,pv){
-  const alt = `<span class=nop>La imagen no cargó (a veces la bloquea el navegador). <a href=&quot;${esc(pv.imagen||'')}&quot; target=_blank rel=noopener>Abrir imagen</a></span>`;
-  const img = pv.imagen ? `<img loading="lazy" src="${esc(pv.imagen)}" alt="" referrerpolicy="no-referrer" onerror="this.outerHTML='${alt}'">` : '<span class="nop">Sin vista previa para este anuncio.</span>';
-  // Meta: el iframe de vista previa deja en blanco la imagen de los anuncios estáticos; se usa la imagen que trae la fuente (se renueva a diario)
-  if(canal==='Meta' && pv.formato==='Imagen' && pv.imagen) return img;
+  const img = pv.imagen ? `<img loading="lazy" src="${esc(pv.imagen)}" alt="">` : '<span class="nop">Sin vista previa para este anuncio.</span>';
   if(canal==='Meta' && pv.iframe) return `<iframe src="${esc(pv.iframe)}" loading="lazy" scrolling="no" title="Preview del anuncio"></iframe>`;
   if(canal==='TikTok' && !pv.video_mp4){
     // Spark Ads: el anuncio es una publicación de @huevosoro, sin archivo en la biblioteca; se incrusta el reproductor público
